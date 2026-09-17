@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-script: "Caveat", cursive;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FAF7F2;
+    color: #151E28;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #FCE7F3;
+    color: #E6007A;
+  }
+}
+
+/* Organic Ambient Glowing Shapes */
+.organic-shape-1 {
+  position: absolute;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.organic-shape-2 {
+  position: absolute;
+  border-radius: 40% 60% 35% 65% / 60% 35% 65% 40%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+/* Speech bubble pointers */
+.bubble-tail-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 30%;
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
+
+.bubble-tail-bottom-right::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  right: 25%;
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DFD2C0;
+  border-radius: 9999px;
+  border: 2px solid #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E6007A;
+}
