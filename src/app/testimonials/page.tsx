@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PreFooterBanner from "@/components/PreFooterBanner";
 import MascotHero from "@/components/MascotHero";
+import MascotCompanion from "@/components/MascotCompanion";
 import WriteReviewModal from "@/components/WriteReviewModal";
 import { GOOGLE_TESTIMONIALS_DATA, GoogleReviewItem } from "@/lib/data";
 import {
@@ -318,6 +319,8 @@ export default function TestimonialsPage() {
         onClose={() => setReviewModalOpen(false)}
         onReviewSubmitted={handleNewReview}
       />
+      {/* Kin & Kayo Mascot Companion */}
+      <MascotCompanion />
     </div>
   );
 }

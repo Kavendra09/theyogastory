@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 
@@ -102,6 +103,39 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Top Brand Banner with 3D Logo & Kin & Kayo Note */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 pb-8 mb-8 border-b border-[#EAE3D6]/70">
+          <Link href="/" className="flex items-center gap-3.5 group">
+            <div className="relative w-12 h-12 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-amber-400 via-amber-200 to-amber-500 shadow-md group-hover:scale-105 transition-all duration-300 shrink-0">
+              <div className="relative w-full h-full rounded-[14px] overflow-hidden bg-white">
+                <Image
+                  src="/images/yoga-story-3d-logo.jpg"
+                  alt="The Yoga Story 3D Logo"
+                  fill
+                  sizes="48px"
+                  className="object-cover object-center"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-serif text-lg font-bold tracking-tight text-brand-navy leading-none">
+                THE YOGA STORY
+              </span>
+              <span className="font-serif italic text-xs text-brand-navy/70 tracking-wide mt-1">
+                Ancient Whispers, Modern Echoes
+              </span>
+            </div>
+          </Link>
+
+          {/* Kin & Kayo Whisper Message */}
+          <div className="inline-flex items-center gap-2.5 bg-white/80 border border-[#FAD2E1] px-4 py-2 rounded-full shadow-sm">
+            <span className="font-script text-base text-brand-pink font-bold">Kin & Kayo:</span>
+            <span className="text-xs text-brand-navy/80 font-medium">
+              Every breath is a fresh beginning. See you on the mat! ✨
+            </span>
+          </div>
+        </div>
+
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left: People · Practice · Purpose */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">

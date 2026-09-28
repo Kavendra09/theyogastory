@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PreFooterBanner from "@/components/PreFooterBanner";
 import MascotHero from "@/components/MascotHero";
+import MascotCompanion from "@/components/MascotCompanion";
 import JobApplicationModal from "@/components/JobApplicationModal";
 import { JOBS_DATA, JobOpeningItem } from "@/lib/data";
 import {
@@ -383,6 +384,8 @@ export default function CareerPage() {
         location={activeJob?.location || "Gurgaon / Dehradun"}
         isPortfolioSubmission={isPortfolioMode}
       />
+      {/* Kin & Kayo Mascot Companion */}
+      <MascotCompanion />
     </div>
   );
 }

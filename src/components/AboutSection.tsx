@@ -58,18 +58,18 @@ export default function AboutSection() {
               </div>
 
               {/* Floating Quote Card */}
-              <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-cream-50/95 backdrop-blur-md p-6 rounded-2xl shadow-elevated border border-earth-200/80 max-w-xs">
-                <div className="flex items-center gap-2 mb-2 text-terracotta-600">
+              <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-cream-50/95 backdrop-blur-md p-6 rounded-2xl shadow-elevated border border-[#FAD2E1] max-w-xs">
+                <div className="flex items-center gap-2 mb-2 text-brand-pink">
                   <Sparkles className="w-4 h-4" />
                   <span className="text-xs font-bold uppercase tracking-wider">
-                    Our Core Motto
+                    Kin & Kayo&apos;s Wisdom
                   </span>
                 </div>
-                <p className="font-serif italic text-base sm:text-lg text-charcoal-900 leading-snug">
+                <p className="font-serif italic text-base sm:text-lg text-brand-navy leading-snug">
                   &ldquo;Yoga is not about touching your toes. It is about what you learn on the way down.&rdquo;
                 </p>
-                <span className="block mt-2 text-xs font-semibold text-sage-700">
-                  — The Yoga Story Foundation
+                <span className="block mt-2 text-xs font-semibold text-brand-pink">
+                  — Kin & Kayo · The Story Guides
                 </span>
               </div>
             </div>

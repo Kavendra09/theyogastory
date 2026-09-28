@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles, Compass, ShieldCheck, Heart, Users } from "lucide-react";
+import MascotHero from "@/components/MascotHero";
 
 interface HeroProps {
   onOpenBooking?: () => void;
@@ -66,7 +67,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col items-start text-left"
+            className="lg:col-span-6 flex flex-col items-start text-left"
           >
             {/* Studio Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage-100 text-sage-800 border border-sage-300/60 mb-6 shadow-sm">
@@ -152,82 +153,15 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             </div>
           </motion.div>
 
-          {/* Right Column: Hero Visual Showcase with Floating Badges */}
+          {/* Right Column: Kin & Kayo 3D Mascot Showcase */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative"
+            className="lg:col-span-6 relative w-full"
           >
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Decorative Frame */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-terracotta-200/50 via-sage-200/40 to-cream-200/30 -rotate-2 transform transition-transform" />
-
-              {/* Main Visual Card */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-cream-50 aspect-[4/5]">
-                <Image
-                  src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1200&q=85"
-                  alt="Practitioner in mindful serene yoga flow pose at The Yoga Story studio"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                  className="object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/70 via-charcoal-950/10 to-transparent" />
-
-                {/* Card Caption Overlay */}
-                <div className="absolute bottom-6 left-6 right-6 text-cream-50">
-                  <span className="inline-block px-3 py-1 bg-sage-500/90 text-cream-50 text-xs font-semibold rounded-full uppercase tracking-wider mb-2 backdrop-blur-sm">
-                    Sunrise Flow in Session
-                  </span>
-                  <h3 className="font-serif text-2xl font-bold leading-snug">
-                    Natural Oak & Cork Studio
-                  </h3>
-                  <p className="text-xs text-cream-200/90 mt-1">
-                    Purified air, warm ambient temperature, soundproof sanctuary
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating Badge 1: Community */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="absolute -top-6 -left-6 bg-cream-50/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-elevated border border-sage-200/80 flex items-center gap-3"
-              >
-                <div className="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center text-sage-700">
-                  <Users className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-charcoal-900">
-                    Warm Community
-                  </div>
-                  <div className="text-[11px] text-charcoal-700">
-                    No judgment, purely your pace
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge 2: Organic Props */}
-              <motion.div
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-                className="absolute -bottom-6 -right-4 bg-cream-50/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-elevated border border-terracotta-200/80 flex items-center gap-3"
-              >
-                <div className="w-10 h-10 rounded-full bg-terracotta-100 flex items-center justify-center text-terracotta-600">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-charcoal-900">
-                    Certified Alliance
-                  </div>
-                  <div className="text-[11px] text-charcoal-700">
-                    500-HR Lead Guides
-                  </div>
-                </div>
-              </motion.div>
+            <div className="relative mx-auto max-w-lg lg:max-w-none">
+              <MascotHero type="home" onActionClick={handleBooking} />
             </div>
           </motion.div>
         </div>

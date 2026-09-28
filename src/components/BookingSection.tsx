@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   Sparkles,
   MapPin,
@@ -14,6 +15,7 @@ import {
   User,
   Send,
   AlertCircle,
+  Heart,
 } from "lucide-react";
 import { STUDIO_INFO, PROGRAMS_DATA } from "@/lib/data";
 
@@ -315,6 +317,27 @@ export default function BookingSection({ preselectedClass }: BookingSectionProps
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-5 flex flex-col gap-6"
           >
+            {/* Kin & Kayo Welcoming Note */}
+            <div className="bg-gradient-to-r from-[#FFF5F9] to-[#FAF7F2] p-5 rounded-3xl border border-[#FAD2E1] shadow-sm flex items-center gap-4">
+              <div className="relative w-12 h-12 rounded-2xl overflow-hidden bg-white border border-[#FAD2E1] shrink-0 p-0.5 shadow-sm">
+                <Image
+                  src="/images/yoga-story-3d-logo.jpg"
+                  alt="Kin & Kayo Mascot Emblem"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <span className="font-script text-base font-bold text-brand-pink">Kin & Kayo say:</span>
+                  <Heart className="w-3.5 h-3.5 text-brand-pink fill-brand-pink/30" />
+                </div>
+                <p className="text-xs text-brand-navy/80 leading-snug">
+                  &ldquo;Don&apos;t worry if you&apos;ve never stepped on a yoga mat before. We can&apos;t wait to welcome you home!&rdquo;
+                </p>
+              </div>
+            </div>
+
             {/* Studio Info Card */}
             <div className="bg-cream-50 p-8 rounded-3xl border border-earth-200 shadow-soft">
               <h3 className="font-serif text-2xl font-bold text-charcoal-900 mb-6 pb-4 border-b border-earth-200">

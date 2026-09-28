@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Heart, ArrowRight } from "lucide-react";
 
 interface PreFooterBannerProps {
@@ -98,26 +99,18 @@ export default function PreFooterBanner({ type, onActionClick }: PreFooterBanner
             )}
           </div>
 
-          {/* Right: The Yoga Story Lotus Logo */}
+          {/* Right: The Yoga Story 3D Logo */}
           <div className="shrink-0 flex flex-col items-center md:items-end text-center md:text-right">
-            <div className="w-12 h-12 rounded-2xl bg-white border border-[#FAD2E1] flex items-center justify-center p-2 shadow-sm mb-2">
-              <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-brand-pink">
-                <path
-                  d="M12 3C12 7.5 8.5 10.5 8.5 14.5C8.5 16.43 10.07 18 12 18C13.93 18 15.5 16.43 15.5 14.5C15.5 10.5 12 3 12 3Z"
-                  fill="currentColor"
-                  fillOpacity="0.85"
+            <div className="relative w-14 h-14 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-amber-400 via-amber-200 to-amber-500 shadow-md mb-2">
+              <div className="relative w-full h-full rounded-[14px] overflow-hidden bg-white">
+                <Image
+                  src="/images/yoga-story-3d-logo.jpg"
+                  alt="The Yoga Story 3D Logo"
+                  fill
+                  sizes="56px"
+                  className="object-cover object-center"
                 />
-                <path
-                  d="M6 9.5C6.5 13 4.5 15 4.5 17C4.5 18.38 5.62 19.5 7 19.5C8.38 19.5 9.5 18.38 9.5 17C9.5 14.5 7.5 11.5 6 9.5Z"
-                  fill="#F472B6"
-                  fillOpacity="0.75"
-                />
-                <path
-                  d="M18 9.5C17.5 13 19.5 15 19.5 17C19.5 18.38 18.38 19.5 17 19.5C15.62 19.5 14.5 18.38 14.5 17C14.5 14.5 16.5 11.5 18 9.5Z"
-                  fill="#F472B6"
-                  fillOpacity="0.75"
-                />
-              </svg>
+              </div>
             </div>
             <span className="font-serif text-sm font-bold text-brand-navy tracking-tight">
               THE YOGA STORY

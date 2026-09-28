@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -69,31 +70,17 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             href="/"
             className="flex items-center gap-3 group focus:outline-none"
           >
-            {/* Elegant Lotus Crest Badge */}
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 p-0.5 shadow-sm group-hover:scale-105 transition-transform duration-200">
-              <div className="w-full h-full bg-[#1A2536] rounded-[10px] flex items-center justify-center p-1.5">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="w-6 h-6 text-amber-300 drop-shadow"
-                >
-                  <path
-                    d="M12 2C12 7 8 10 8 15C8 17.21 9.79 19 12 19C14.21 19 16 17.21 16 15C16 10 12 2 12 2Z"
-                    fill="currentColor"
-                    fillOpacity="0.9"
-                  />
-                  <path
-                    d="M6 9C6.5 13 4 15 4 18C4 19.66 5.34 21 7 21C8.66 21 10 19.66 10 18C10 14.5 7.5 11 6 9Z"
-                    fill="#F472B6"
-                    fillOpacity="0.85"
-                  />
-                  <path
-                    d="M18 9C17.5 13 20 15 20 18C20 19.66 18.66 21 17 21C15.34 21 14 19.66 14 18C14 14.5 16.5 11 18 9Z"
-                    fill="#F472B6"
-                    fillOpacity="0.85"
-                  />
-                  <circle cx="12" cy="19.5" r="1.5" fill="#FDE047" />
-                </svg>
+            {/* 3D Sacred Lotus & Mountain Crest Badge */}
+            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-amber-400 via-amber-200 to-amber-500 shadow-md group-hover:scale-105 group-hover:shadow-lg transition-all duration-300 shrink-0">
+              <div className="relative w-full h-full rounded-[14px] overflow-hidden bg-white">
+                <Image
+                  src="/images/yoga-story-3d-logo.jpg"
+                  alt="The Yoga Story 3D Logo"
+                  fill
+                  sizes="48px"
+                  priority
+                  className="object-cover object-center transform group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
             </div>
 
@@ -184,13 +171,25 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             >
               <div>
                 <div className="flex items-center justify-between pb-5 border-b border-cream-300">
-                  <div className="flex flex-col">
-                    <span className="font-serif text-lg font-bold text-brand-navy">
-                      THE YOGA STORY
-                    </span>
-                    <span className="font-serif italic text-xs text-brand-navy/70">
-                      Ancient Whispers, Modern Echoes
-                    </span>
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-10 h-10 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-amber-400 to-amber-500 shadow-sm shrink-0">
+                      <div className="relative w-full h-full rounded-[10px] overflow-hidden bg-white">
+                        <Image
+                          src="/images/yoga-story-3d-logo.jpg"
+                          alt="The Yoga Story Logo"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-serif text-base font-bold text-brand-navy leading-tight">
+                        THE YOGA STORY
+                      </span>
+                      <span className="font-serif italic text-[10px] text-brand-navy/70">
+                        Ancient Whispers, Modern Echoes
+                      </span>
+                    </div>
                   </div>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
