@@ -44,7 +44,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-cream-100"
+      className="relative pt-6 pb-10 sm:pt-8 sm:pb-14 lg:pt-10 lg:pb-16 overflow-hidden bg-cream-100"
     >
       {/* Ambient Organic Shapes Decoration */}
       <div
@@ -60,8 +60,8 @@ export default function Hero({ onOpenBooking }: HeroProps) {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
           {/* Left Column: Typography & CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -70,7 +70,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             className="lg:col-span-6 flex flex-col items-start text-left"
           >
             {/* Studio Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage-100 text-sage-800 border border-sage-300/60 mb-6 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage-100 text-sage-800 border border-sage-300/60 mb-4 shadow-sm">
               <Sparkles className="w-4 h-4 text-terracotta-500" />
               <span className="text-xs font-semibold tracking-wider uppercase">
                 Welcome to Bengaluru&apos;s Mindful Sanctuary
@@ -78,9 +78,9 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             </div>
 
             {/* Main Heading with Rotating Dynamic Phrase */}
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl xl:text-[64px] font-bold text-brand-navy tracking-tight leading-[1.15] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl xl:text-[64px] font-bold text-brand-navy tracking-tight leading-[1.15] mb-4">
               A Sacred Space to{" "}
-              <span className="block text-brand-pink min-h-[2.4em] sm:min-h-[1.25em] mt-1 sm:mt-2">
+              <span className="block text-brand-pink min-h-[2.4em] sm:min-h-[1.25em] mt-1 sm:mt-1.5">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={headlineIndex}
@@ -97,14 +97,14 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             </h1>
 
             {/* Subtext */}
-            <p className="text-base sm:text-lg lg:text-xl text-brand-navy/75 max-w-2xl font-normal leading-relaxed mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-brand-navy/75 max-w-2xl font-normal leading-relaxed mb-5">
               Step off the frantic pace of modern life into an earthen oasis of
               Vinyasa, grounding Yin, restorative sound journeys, and mindful
               living. Tailored for both raw beginners and devoted seekers.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-12">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mb-6">
               <button
                 onClick={handleBooking}
                 id="hero-book-trial-btn"
@@ -153,16 +153,14 @@ export default function Hero({ onOpenBooking }: HeroProps) {
             </div>
           </motion.div>
 
-          {/* Right Column: Kin & Kayo 3D Mascot Showcase */}
+          {/* Right Column: Kin & Kayo 3D Mascot Showcase — identical to testimonials layout */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 relative w-full"
+            className="lg:col-span-6 relative w-full flex items-center justify-center lg:justify-end"
           >
-            <div className="relative mx-auto max-w-lg lg:max-w-none">
-              <MascotHero type="home" onActionClick={handleBooking} />
-            </div>
+            <MascotHero type="home" onActionClick={handleBooking} />
           </motion.div>
         </div>
       </div>

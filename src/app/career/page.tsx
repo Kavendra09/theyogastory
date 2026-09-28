@@ -97,12 +97,12 @@ export default function CareerPage() {
 
       <main className="flex-grow">
         {/* 2. Hero Section */}
-        <section className="relative pt-8 pb-16 sm:py-16 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <section className="relative pt-6 pb-10 sm:pt-8 sm:pb-14 lg:pt-10 lg:pb-16 overflow-hidden">
+          <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               {/* Left Column: Headline & Pillars */}
-              <div className="lg:col-span-6 flex flex-col items-start">
-                <div className="mb-3">
+              <div className="lg:col-span-5 flex flex-col items-start">
+                <div className="mb-2">
                   <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-brand-navy/70 uppercase">
                     People &nbsp;·&nbsp; Practice &nbsp;·&nbsp; Purpose
                   </span>
@@ -111,12 +111,12 @@ export default function CareerPage() {
                   </div>
                 </div>
 
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-[1.1] mb-5">
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-[1.1] mb-4">
                   Build Your <br />
                   <span className="text-brand-pink italic font-serif">Story With Us</span>
                 </h1>
 
-                <p className="text-base sm:text-lg text-brand-navy/75 max-w-lg leading-relaxed mb-8">
+                <p className="text-base sm:text-lg text-brand-navy/75 max-w-lg leading-relaxed mb-5">
                   Be a part of The Yoga Story — where people, purpose and wellness come together.
                 </p>
 
@@ -164,8 +164,8 @@ export default function CareerPage() {
                 </div>
               </div>
 
-              {/* Right Column: Kin & Kayo 3D Mascots with Dialogue */}
-              <div className="lg:col-span-6">
+              {/* Right Column: Kin & Kayo — identical layout to home & testimonials */}
+              <div className="lg:col-span-7 relative w-full flex items-center justify-center lg:justify-end">
                 <MascotHero type="career" />
               </div>
             </div>

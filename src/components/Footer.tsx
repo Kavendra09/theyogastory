@@ -73,7 +73,75 @@ function LinkedinIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-export default function Footer() {
+export default function Footer({ variant = "full" }: { variant?: "full" | "minimal" }) {
+  if (variant === "minimal") {
+    return (
+      <footer className="w-full bg-[#FAF7F2] border-t border-[#EAE3D6]/70 py-6 relative overflow-hidden">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            {/* Left: People · Practice · Purpose */}
+            <div className="flex flex-col items-center sm:items-start">
+              <span className="text-xs font-semibold uppercase tracking-wider text-brand-navy/75">
+                People &nbsp;·&nbsp; Practice &nbsp;·&nbsp; Purpose
+              </span>
+              <span className="text-[11px] text-brand-navy/60 font-medium mt-0.5">
+                A Brighter Tomorrow
+              </span>
+            </div>
+
+            {/* Center: Social Icons */}
+            <div className="flex items-center gap-3">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-8 h-8 rounded-lg bg-white border border-[#E5DEC7] flex items-center justify-center text-brand-navy hover:text-brand-pink hover:border-brand-pink transition-all shadow-sm"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-8 h-8 rounded-lg bg-white border border-[#E5DEC7] flex items-center justify-center text-brand-navy hover:text-brand-pink hover:border-brand-pink transition-all shadow-sm"
+              >
+                <FacebookIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="w-8 h-8 rounded-lg bg-white border border-[#E5DEC7] flex items-center justify-center text-brand-navy hover:text-brand-pink hover:border-brand-pink transition-all shadow-sm"
+              >
+                <YoutubeIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-8 h-8 rounded-lg bg-white border border-[#E5DEC7] flex items-center justify-center text-brand-navy hover:text-brand-pink hover:border-brand-pink transition-all shadow-sm"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Right: More Breathe Belong ♡ */}
+            <div className="flex items-center gap-1.5 text-center sm:text-right">
+              <span className="font-script text-xl text-brand-navy/85 font-bold tracking-wide">
+                More Breathe Belong
+              </span>
+              <Heart className="w-3.5 h-3.5 text-brand-pink fill-brand-pink/20 stroke-[2.5]" />
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="w-full bg-[#FAF7F2] border-t border-[#EAE3D6] py-10 relative overflow-hidden">
       {/* Botanical decorative leaves background elements */}
