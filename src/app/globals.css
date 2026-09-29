@@ -1,88 +1,344 @@
+/* ============================================================
+   THE YOGA STORY — GLOBAL DESIGN TOKENS
+   Single source of truth. Change a value here → it propagates
+   everywhere via Tailwind's `var()` references in the config.
+   ============================================================ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────
+   1. DESIGN TOKENS  (CSS Custom Properties)
+   ───────────────────────────────────────────── */
 @layer base {
   :root {
-    --font-serif: "Cormorant Garamond", Georgia, serif;
-    --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-    --font-script: "Caveat", cursive;
+    /* ── Responsive Stage Unit ────────────── */
+    --u: calc(min(100vw, 1920px) / 1536);
+
+    /* ── Brand Core ─────────────────────────── */
+    --color-primary:        #D6336C;
+    --color-primary-hover:  #B5295A;
+    --color-primary-light:  #FFF0F5;
+    --color-primary-muted:  #FCE4EE;
+
+    /* Primary gradient used on pill CTAs */
+    --gradient-primary: linear-gradient(135deg, #E8407A 0%, #C1294F 100%);
+    --gradient-primary-hover: linear-gradient(135deg, #C1294F 0%, #9E1E3E 100%);
+
+    /* ── Semantic Ink / Text ────────────────── */
+    --color-ink:       #1E1B1B;
+    --color-navy:      #1B1464;
+    --color-body:      #4A4340;
+    --color-muted:     #8C7F7B;
+    --color-terracotta:#A0522D;
+
+    /* ── Page Background (cream to peach to white) ── */
+    --gradient-page: linear-gradient(180deg, #FFF3EA 0%, #FBE4D8 40%, #FFFFFF 100%);
+    --color-cream-start: #FFF3EA;
+    --color-cream-mid:   #FBE4D8;
+    --color-cream-end:   #FFFFFF;
+
+    /* ── Surface and Border ─────────────────── */
+    --color-surface:      rgba(255, 255, 255, 0.85);
+    --color-surface-solid:#FFFFFF;
+    --color-border-soft:  rgba(214, 51, 108, 0.12);
+    --color-border-light: rgba(0, 0, 0, 0.07);
+    --color-kraft-bg:     #F5E6C8;
+    --color-kraft-border: #E6D4B2;
+
+    /* ── Integrations & Micro Tokens ────────── */
+    --color-whatsapp:       #25D366;
+    --color-whatsapp-hover: #1EBE5D;
+    --color-google-blue:    #4285F4;
+    --color-google-green:   #34A853;
+    --color-google-yellow:  #FBBC05;
+    --color-google-red:     #EA4335;
+
+    /* ── Natural Stone Elements ─────────────── */
+    --color-stone-1: #8A8482;
+    --color-stone-2: #6B6563;
+    --color-stone-3: #524C4A;
+    --color-stone-4: #3D3735;
+    --color-signpost: #D2B48C;
+
+    /* ── Tone Palette ───────────────────────── */
+    /* Pink */
+    --tone-pink-bg:    #FFF0F5;
+    --tone-pink-fg:    #D6336C;
+    --tone-pink-border:#F9C5D8;
+    --tone-pink-panel: #FCE4EE;
+    /* Green */
+    --tone-green-bg:    #F0F7EE;
+    --tone-green-fg:    #7DAA6A;
+    --tone-green-border:#C3DDB9;
+    --tone-green-panel: #E3F2DF;
+    /* Blue */
+    --tone-blue-bg:    #EEF4FC;
+    --tone-blue-fg:    #4C8DDB;
+    --tone-blue-border:#BDD4F5;
+    --tone-blue-panel: #DDE9F8;
+    /* Yellow */
+    --tone-yellow-bg:    #FFFBEE;
+    --tone-yellow-fg:    #F6B73C;
+    --tone-yellow-border:#FCDFA0;
+    --tone-yellow-panel: #FEF3C7;
+    /* Purple */
+    --tone-purple-bg:    #F5F0FF;
+    --tone-purple-fg:    #7C5CBF;
+    --tone-purple-border:#CDBFEC;
+    --tone-purple-panel: #EDE5FF;
+    /* Orange */
+    --tone-orange-bg:    #FFF3EE;
+    --tone-orange-fg:    #E07844;
+    --tone-orange-border:#F8C5A8;
+    --tone-orange-panel: #FDE5D8;
+
+    /* ── Radii ──────────────────────────────── */
+    --radius-pill:  9999px;
+    --radius-card:  16px;
+    --radius-panel: 24px;
+    --radius-chip:  8px;
+
+    /* ── Shadows ────────────────────────────── */
+    --shadow-soft:  0 4px 24px -4px rgba(214, 51, 108, 0.10);
+    --shadow-card:  0 8px 32px -8px rgba(30, 27, 27, 0.10), 0 0 0 1px rgba(214, 51, 108, 0.08);
+    --shadow-glass: 0 8px 32px -4px rgba(30, 27, 27, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+    --shadow-pill:  0 6px 20px -4px rgba(214, 51, 108, 0.40);
+    --shadow-pill-hover: 0 10px 28px -4px rgba(214, 51, 108, 0.55);
+
+    /* ── Glass Blur ─────────────────────────── */
+    --blur-glass: 16px;
+
+    /* ── Typography (populated by next/font) ── */
+    --font-heading: var(--font-playfair), "Playfair Display", Georgia, serif;
+    --font-body:    var(--font-inter),    "Inter", system-ui, sans-serif;
+    --font-script:  var(--font-caveat),   "Caveat", cursive;
+
+    /* ── Easing ─────────────────────────────── */
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    background-color: #FAF7F2;
-    color: #151E28;
-    font-family: var(--font-sans);
+    font-size: 16px;
     overflow-x: hidden;
   }
 
+  body {
+    background: var(--gradient-page);
+    background-attachment: fixed;
+    color: var(--color-body);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
   ::selection {
-    background-color: #FCE7F3;
-    color: #E6007A;
+    background-color: var(--color-primary-muted);
+    color: var(--color-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-/* Organic Ambient Glowing Shapes */
-.organic-shape-1 {
-  position: absolute;
-  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-  filter: blur(60px);
-  pointer-events: none;
+/* ─────────────────────────────────────────────
+   2. UTILITIES
+   ───────────────────────────────────────────── */
+@layer utilities {
+  .page-bg {
+    background: var(--gradient-page);
+    background-attachment: fixed;
+  }
+
+  .glass {
+    background: var(--color-surface);
+    backdrop-filter: blur(var(--blur-glass));
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: #ffffff;
+    box-shadow: var(--shadow-pill);
+    border-radius: var(--radius-pill);
+    transition: box-shadow 0.25s var(--ease-out),
+                background 0.25s var(--ease-out),
+                transform 0.18s var(--ease-spring);
+  }
+  .btn-primary:hover {
+    background: var(--gradient-primary-hover);
+    box-shadow: var(--shadow-pill-hover);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /* ── Typography scale ───────────────────── */
+  .type-display {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 5.5vw + 1rem, 5.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+
+  .type-h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 2.5vw + 0.5rem, 2.5rem);
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+  }
+
+  .type-h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.625rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  .type-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-terracotta);
+  }
+
+  .type-body {
+    font-family: var(--font-body);
+    font-size: clamp(0.9375rem, 1vw + 0.25rem, 1.0625rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--color-body);
+  }
+
+  .type-small {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+
+  .type-script {
+    font-family: var(--font-script);
+    font-size: clamp(1.25rem, 2vw + 0.25rem, 2rem);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-primary);
+  }
+
+  .type-navy {
+    color: var(--color-navy);
+  }
+
+  .tone-icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Scrollbar ───────────────────────────── */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-cream-start); }
+  ::-webkit-scrollbar-thumb {
+    background: #FBBAD0;
+    border-radius: 9999px;
+    border: 2px solid var(--color-cream-start);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
 }
 
-.organic-shape-2 {
-  position: absolute;
-  border-radius: 40% 60% 35% 65% / 60% 35% 65% 40%;
-  filter: blur(70px);
-  pointer-events: none;
-}
+/* ─────────────────────────────────────────────
+   3. COMPONENTS
+   ───────────────────────────────────────────── */
+@layer components {
+  /* Speech bubble tails */
+  .bubble-tail-left::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 22px;
+    border-width: 9px 9px 0;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+    display: block;
+    width: 0;
+  }
 
-/* Speech bubble pointers */
-.bubble-tail-bottom::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 30%;
-  border-width: 8px 8px 0;
-  border-style: solid;
-  border-color: #ffffff transparent;
-  display: block;
-  width: 0;
-}
+  .bubble-tail-right::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    right: 22px;
+    border-width: 9px 9px 0;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+    display: block;
+    width: 0;
+  }
 
-.bubble-tail-bottom-right::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  right: 25%;
-  border-width: 8px 8px 0;
-  border-style: solid;
-  border-color: #ffffff transparent;
-  display: block;
-  width: 0;
-}
+  /* Decorative organic blob */
+  .organic-blob {
+    position: absolute;
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    filter: blur(55px);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-/* Custom subtle scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  /* Card */
+  .card {
+    background: var(--color-surface-solid);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border-light);
+    transition: box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  }
+  .card:hover {
+    box-shadow: var(--shadow-glass);
+    transform: translateY(-2px);
+  }
 
-::-webkit-scrollbar-track {
-  background: #FAF7F2;
-}
+  /* Panel */
+  .panel {
+    background: var(--color-surface-solid);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--color-border-light);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #DFD2C0;
-  border-radius: 9999px;
-  border: 2px solid #FAF7F2;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #E6007A;
+  /* Chip */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-chip);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
 }

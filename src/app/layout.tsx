@@ -1,75 +1,89 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import { Playfair_Display, Inter, Caveat } from "next/font/google";
 import "./globals.css";
+import { ChatWidget } from "@/components/layout/ChatWidget";
 
-const cormorant = Cormorant_Garamond({
+/* ── Fonts ───────────────────────────────────────────────────────── */
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif",
+  weight: ["600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
   display: "swap",
 });
 
 const caveat = Caveat({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
-  variable: "--font-script",
+  variable: "--font-caveat",
   display: "swap",
 });
 
+/* ── Viewport ────────────────────────────────────────────────────── */
 export const viewport: Viewport = {
-  themeColor: "#FAF7F2",
+  themeColor: "#FFF3EA",
   width: "device-width",
   initialScale: 1,
 };
 
+/* ── Metadata ────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: "The Yoga Story | Boutique Yoga & Holistic Wellness Sanctuary",
+  title: {
+    template: "%s | The Yoga Story",
+    default: "The Yoga Story — Ancient Whispers, Modern Echoes",
+  },
   description:
-    "An earthen sanctuary dedicated to mindful movement, breathwork, and nervous system harmony. Studio classes, private home sessions, and immersive wellness programs in a serene terracotta and sage environment.",
+    "Thoughtfully designed yoga programs for a healthier, happier and more mindful you. Studio classes, home sessions, online yoga, and teacher training in Gurgaon & Dehradun.",
   keywords: [
-    "The Yoga Story",
-    "Yoga Studio",
-    "Vinyasa Flow",
-    "Hatha Yoga",
-    "Sound Meditation",
-    "Prenatal Yoga",
-    "Ayurveda & Wellness",
-    "Corporate Wellness",
-    "Private Yoga Sessions",
+    "The Yoga Story", "Yoga Studio", "Yoga Classes", "Pre-Natal Yoga",
+    "Kids Yoga", "Senior Citizen Yoga", "Online Yoga", "Home Yoga",
+    "Teacher Training Course", "Corporate Yoga", "Gurgaon Yoga", "Dehradun Yoga",
   ],
   authors: [{ name: "The Yoga Story" }],
   openGraph: {
-    title: "The Yoga Story | Sanctuary of Conscious Movement & Peace",
-    description:
-      "Step onto the mat and reconnect with your inner stillness. Discover thoughtful classes, master instructors, and restorative programs.",
-    url: "https://theyogastory.com",
+    title: "The Yoga Story — Ancient Whispers, Modern Echoes",
+    description: "Thoughtfully designed yoga programs for a healthier, happier and more mindful you.",
+    url: "https://theyogastory.co.in",
     siteName: "The Yoga Story",
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Yoga Story | Boutique Yoga & Wellness Studio",
-    description: "Breathe. Move. Transform. Welcome to The Yoga Story sanctuary.",
+    title: "The Yoga Story — Ancient Whispers, Modern Echoes",
+    description: "More. Breathe. Belong.",
   },
 };
 
+/* ── Root Layout ─────────────────────────────────────────────────── */
+/**
+ * Root layout: injects fonts, global CSS, and the persistent ChatWidget.
+ * Header and Footer are NOT rendered here — they live in route-group
+ * layouts so each page group can choose the correct variant.
+ *
+ * Route groups:
+ *   (floating)  → Home, About, Services   → SiteHeader variant="floating"
+ *   (bar)       → Testimonials, Career, Contact → SiteHeader variant="bar"
+ */
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${plusJakarta.variable} ${caveat.variable}`}>
-      <body className="font-sans bg-cream-100 text-charcoal-900 selection:bg-brand-pinkLight selection:text-brand-pink">
+    <html
+      lang="en"
+      className={`${playfair.variable} ${inter.variable} ${caveat.variable}`}
+    >
+      <body className="page-bg text-body font-body antialiased overflow-x-hidden min-h-screen">
         {children}
+        {/* Persistent WhatsApp chat widget */}
+        <ChatWidget />
       </body>
     </html>
   );
