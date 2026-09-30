@@ -5,8 +5,6 @@
  * Section heading for locations section with handwritten ScriptNote decoration.
  */
 import { cn } from "@/lib/utils";
-import { ScriptNote } from "@/components/ui/Atoms";
-import { CONTACT_PAGE_DATA } from "@/data/contact";
 
 interface LocationsHeadingProps {
   className?: string;
@@ -14,18 +12,20 @@ interface LocationsHeadingProps {
 
 export function LocationsHeading({ className }: LocationsHeadingProps) {
   return (
-    <div className={cn("flex flex-col gap-1.5", className)}>
-      <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
+    <div className={cn("flex flex-col gap-1.5 mb-2", className)}>
+      <div className="flex flex-wrap items-center gap-2">
         <h2 className="font-heading font-bold text-navy text-2xl sm:text-3xl leading-tight">
-          {CONTACT_PAGE_DATA.locationsHeading}
+          Our Locations
         </h2>
+        <span className="text-emerald-600 text-lg">🌿</span>
+        <span className="hidden sm:inline text-navy/20 font-light mx-1">──</span>
+        <span className="hidden sm:inline text-muted text-xs sm:text-sm font-normal">
+          Two centres. One vision — Healthier People, Happier Tomorrows.
+        </span>
       </div>
-
-      <div className="pt-0.5">
-        <ScriptNote rotate={-2} heart className="text-base sm:text-lg text-primary font-medium">
-          {CONTACT_PAGE_DATA.locationsScriptNote.replace("♡", "").trim()}
-        </ScriptNote>
-      </div>
+      <p className="sm:hidden text-muted text-xs">
+        Visit our centres and be a part of our growing community.
+      </p>
     </div>
   );
 }

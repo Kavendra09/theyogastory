@@ -16,10 +16,10 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { CtaBanner } from "@/components/layout/CtaBanner";
-import { RatingSummaryBar, ReviewGrid } from "@/features/testimonials";
+import { RatingSummaryBar, ReviewGrid, GoogleLogo } from "@/features/testimonials";
 import { testimonialsHero } from "@/data/heroes";
 import { TESTIMONIALS_SECTION, TESTIMONIALS_CTA } from "@/data/testimonials";
-import { ExternalLink, Star } from "lucide-react";
+import { ExternalLink, Star, ArrowRight } from "lucide-react";
 
 import type { Metadata } from "next";
 
@@ -58,27 +58,28 @@ export default function TestimonialsPage() {
 
       {/* ── 2. Rating Summary Bar Section ─────────────────────────── */}
       <div className="relative -mt-6 sm:-mt-8 z-30 mb-8 sm:mb-12">
-        <Container size="lg">
+        <Container size="xl">
           <RatingSummaryBar />
         </Container>
       </div>
 
       {/* ── 3. Reviews Section ("Here's What They Say") ───────────── */}
       <section className="py-6 sm:py-10 mb-16 relative" aria-labelledby="testimonials-heading">
-        <Container size="lg">
-          {/* Section Heading with mobile subtitle */}
-          <div className="text-center mb-8 sm:mb-12">
-            <SectionHeading
-              id="testimonials-heading"
-              variant="centered-with-leaves"
-              eyebrow={TESTIMONIALS_SECTION.eyebrow}
-              titleParts={[{ t: TESTIMONIALS_SECTION.title }]}
-              subtitle={
-                <span className="block sm:hidden text-muted text-xs mt-1">
-                  {TESTIMONIALS_SECTION.mobileSubtitle}
-                </span>
-              }
-            />
+        <Container size="xl">
+          {/* Section Heading matching screenshot */}
+          <div className="text-center mb-8 sm:mb-10">
+            <div className="flex items-center justify-center gap-2.5 sm:gap-3 mb-2">
+              <span className="text-emerald-600 text-base sm:text-lg">🌿</span>
+              <span className="text-emerald-700/30 text-sm hidden sm:inline">──────</span>
+              <h2 id="testimonials-heading" className="font-heading font-extrabold text-navy text-2xl sm:text-3xl leading-tight">
+                {TESTIMONIALS_SECTION.title}
+              </h2>
+              <span className="text-emerald-700/30 text-sm hidden sm:inline">──────</span>
+              <span className="text-emerald-600 text-base sm:text-lg">🌿</span>
+            </div>
+            <p className="text-muted text-xs sm:text-sm">
+              {TESTIMONIALS_SECTION.subtitle}
+            </p>
           </div>
 
           {/* Interactive Review Grid (3 cols tablet/desktop, mobile carousel) */}
@@ -88,25 +89,26 @@ export default function TestimonialsPage() {
 
       {/* ── 4. Closing CtaBanner ──────────────────────────────────── */}
       <CtaBanner
-        scriptLeft="Real Stories ♡"
+        scriptLeft="Same Mat Brighter Days ♡"
         titleParts={[
           { t: "Be A Part of " },
           { t: "Our Story", accent: true },
         ]}
         subtitle={TESTIMONIALS_CTA.subtitle}
-        scriptRight="Share the Joy ☺"
         action={
-          <div className="flex flex-col sm:flex-row items-center gap-3">
-            <Button
-              variant="outline"
-              size="lg"
+          <div className="flex justify-center mt-1">
+            <a
               href={TESTIMONIALS_CTA.buttonHref}
-              className="bg-white text-primary border-white hover:bg-white/95 shadow-card font-bold"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center gap-2.5 px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white shadow-pill hover:scale-105 transition-all"
             >
-              <Star size={16} className="fill-amber-400 text-amber-400 mr-1" />
-              {TESTIMONIALS_CTA.buttonLabel}
-              <ExternalLink size={14} className="ml-1 opacity-70" />
-            </Button>
+              <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center p-0.5 shrink-0">
+                <GoogleLogo className="w-3.5 h-3.5" />
+              </div>
+              <span>{TESTIMONIALS_CTA.buttonLabel}</span>
+              <ArrowRight size={15} />
+            </a>
           </div>
         }
       />

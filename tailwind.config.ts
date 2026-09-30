@@ -66,6 +66,10 @@ const config: Config = {
         "cream-start": "var(--color-cream-start)",
         "cream-mid":   "var(--color-cream-mid)",
         "cream-end":   "var(--color-cream-end)",
+        /* Cream tints (derived from page gradient stops) */
+        "cream-50":    "#FFF9F4",
+        "cream-100":   "#FFF3EA",
+        "cream-200":   "#FBE4D8",
 
         /* Tone palette — exposed as semantic tokens */
         "tone-pink-bg":     "var(--tone-pink-bg)",

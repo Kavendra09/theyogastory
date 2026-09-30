@@ -62,7 +62,7 @@ export function JobCard({ job, onApply, className }: JobCardProps) {
           </div>
 
           <div className="flex items-center gap-1.5 bg-cream-50/80 px-2 py-0.5 rounded border border-border-light/50">
-            <Briefcase size={11} className="text-secondary shrink-0" />
+            <Briefcase size={11} className="text-muted shrink-0" />
             <span className="truncate">{job.type}</span>
           </div>
 
@@ -81,10 +81,10 @@ export function JobCard({ job, onApply, className }: JobCardProps) {
       {/* Footer: Apply Button */}
       <div className="pt-2">
         <Button
-          variant="outline"
+          variant="primary"
           size="sm"
           onClick={() => onApply?.(job)}
-          className="w-full font-semibold text-xs hover:border-primary hover:text-primary transition-all group"
+          className="w-full font-semibold text-xs shadow-soft hover:shadow-card transition-all group"
         >
           <span>Apply Now</span>
           <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />

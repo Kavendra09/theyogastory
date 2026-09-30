@@ -62,7 +62,10 @@ export function CharacterProfileCard({ profile, className }: CharacterProfileCar
                 alt={profile.name}
                 fill
                 sizes="96px"
-                className="object-cover object-top"
+                className={cn(
+                  "object-cover",
+                  profile.name === "Kin" ? "object-[36%_38%]" : "object-[64%_35%]"
+                )}
               />
             </div>
           </div>

@@ -88,8 +88,8 @@ export const REVIEWS_DATA: ReviewItem[] = [
     daysAgo: 90,
     helpfulCount: 27,
     quote:
-      "The morning sound immersion and asana practice helped me completely recover from corporate stress. The studio design is truly magical.",
-    avatarTone: "orange",
+      "Excellent guidance, peaceful ambience and a very supportive team. The Yoga Story is a blessing for anyone looking to improve their physical and mental wellness.",
+    avatarTone: "blue",
   },
 ];
 
@@ -131,9 +131,10 @@ export const FILTER_OPTIONS: Array<{ key: FilterKey; label: string; count?: stri
 ];
 
 export const TESTIMONIALS_SECTION = {
-  eyebrow: "COMMUNITY LOVE",
+  eyebrow: "",
   title: "Here's What They Say",
-  mobileSubtitle: "Real feedback from real members on their journey with us.",
+  subtitle: "Real experiences from our yoga community.",
+  mobileSubtitle: "Real experiences from our yoga community.",
 };
 
 export const TESTIMONIALS_CTA = {

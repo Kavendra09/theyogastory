@@ -47,7 +47,7 @@ export function RatingSummaryBar({ className }: RatingSummaryBarProps) {
     <div
       className={cn(
         "relative rounded-panel bg-white/95 border border-tone-pink-border p-4 sm:p-5 lg:p-6 shadow-card",
-        "flex flex-col lg:flex-row lg:flex-nowrap items-center justify-between gap-4 lg:gap-6",
+        "flex flex-col lg:flex-row lg:flex-nowrap items-stretch lg:items-center justify-between gap-4 lg:gap-6",
         className
       )}
     >
@@ -71,56 +71,56 @@ export function RatingSummaryBar({ className }: RatingSummaryBarProps) {
         </div>
       </div>
 
-      {/* ── Middle: 3 Trust Badges in a single row with Dividers ──── */}
-      <div className="flex flex-wrap lg:flex-nowrap items-center justify-center gap-3 sm:gap-4 lg:gap-6 text-xs font-semibold text-navy/85 shrink-0">
+      {/* ── Middle: 3 Trust Badges (Grid on mobile, row on tablet/desktop) ──── */}
+      <div className="grid grid-cols-3 lg:flex lg:flex-nowrap items-center justify-center gap-2 sm:gap-4 lg:gap-6 text-2xs sm:text-xs font-semibold text-navy/85 shrink-0 py-2.5 lg:py-0 border-y lg:border-y-0 border-border-light/60">
         {/* Trust Item 1: Real Reviews */}
-        <div className="flex items-center gap-2 whitespace-nowrap">
+        <div className="flex flex-col lg:flex-row items-center gap-1.5 sm:gap-2 text-center lg:text-left">
           <div className="w-7 h-7 rounded-full bg-tone-green-bg flex items-center justify-center text-tone-green-fg shrink-0 shadow-soft">
             <Users size={14} />
           </div>
-          <span className="leading-tight text-left">
-            Real Reviews from Real People
+          <span className="leading-tight">
+            Real Reviews <br className="lg:hidden" />from Real People
           </span>
         </div>
 
         <div className="hidden lg:block h-6 w-px bg-border-light shrink-0" aria-hidden="true" />
 
         {/* Trust Item 2: Verified on Google */}
-        <div className="flex items-center gap-2 whitespace-nowrap">
+        <div className="flex flex-col lg:flex-row items-center gap-1.5 sm:gap-2 text-center lg:text-left">
           <div className="w-7 h-7 rounded-full bg-tone-green-bg flex items-center justify-center text-tone-green-fg shrink-0 shadow-soft">
             <ShieldCheck size={14} />
           </div>
-          <span className="leading-tight text-left">
-            Verified on Google
+          <span className="leading-tight">
+            Verified on <br className="lg:hidden" />Google
           </span>
         </div>
 
         <div className="hidden lg:block h-6 w-px bg-border-light shrink-0" aria-hidden="true" />
 
         {/* Trust Item 3: Trusted by Growing Community */}
-        <div className="flex items-center gap-2 whitespace-nowrap">
+        <div className="flex flex-col lg:flex-row items-center gap-1.5 sm:gap-2 text-center lg:text-left">
           <div className="w-7 h-7 rounded-full bg-tone-pink-bg flex items-center justify-center text-tone-pink-fg shrink-0 shadow-soft">
             <Heart size={14} />
           </div>
-          <span className="leading-tight text-left">
-            Trusted by Our Growing Community
+          <span className="leading-tight">
+            Trusted by Our <br className="lg:hidden" />Growing Community
           </span>
         </div>
       </div>
 
       {/* ── Right: Read All Reviews Button ───────────────────────── */}
-      <div className="flex flex-col items-center lg:items-end shrink-0">
+      <div className="flex flex-col items-center lg:items-end shrink-0 w-full lg:w-auto">
         <Link
           href={RATING_SUMMARY.googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-primary inline-flex items-center gap-2 min-h-[42px] h-10 px-5 text-xs sm:text-sm font-semibold shadow-pill hover:scale-105 transition-all whitespace-nowrap"
+          className="btn-primary w-full lg:w-auto inline-flex items-center justify-center gap-2 min-h-[42px] h-10 px-5 text-xs sm:text-sm font-semibold shadow-pill hover:scale-105 transition-all whitespace-nowrap"
         >
           <span>{RATING_SUMMARY.buttonLabel}</span>
           <ArrowRight size={14} />
           <ExternalLink size={12} className="opacity-80" />
         </Link>
-        <span className="text-micro text-navy/55 mt-1 whitespace-nowrap">
+        <span className="text-micro text-navy/55 mt-1.5 text-center lg:text-right whitespace-nowrap">
           {RATING_SUMMARY.buttonSubnote}
         </span>
       </div>

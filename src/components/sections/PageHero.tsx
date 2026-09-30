@@ -27,6 +27,7 @@ import { ArtStage, Pin } from "@/components/ui/ArtStage";
 import { IconStrip, type IconStripItem } from "./IconStrip";
 import type { Breadcrumb, SideNote } from "@/data/heroes";
 import { ChevronRight } from "lucide-react";
+import { LotusIcon, LeafSprig } from "@/components/ui/Atoms";
 
 /* ── Exported prop types (used by heroes.ts) ────────────────────── */
 export interface SpeechBubbleProps {
@@ -66,9 +67,9 @@ interface PageHeroProps {
 const HERO_HEIGHTS_AT_1536: Record<string, number> = {
   home: 1024,
   about: 465,
-  services: 365,
+  services: 350,
   career: 365,
-  contact: 382,
+  contact: 410,
   testimonials: 400,
 };
 
@@ -256,37 +257,51 @@ function PinnedPageContent({
     case "services":
       return (
         <>
-          {/* Breadcrumb: x=115, y=100 */}
+          {/* Breadcrumb: x=75, y=95 */}
           {breadcrumb && breadcrumb.length > 0 && (
-            <Pin x={115} y={100} w={200}>
+            <Pin x={75} y={95} w={200}>
               <Breadcrumbs items={breadcrumb} />
             </Pin>
           )}
 
-          {/* H1: x=115, y=130 */}
-          <Pin x={115} y={130} w={380}>
-            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 50)" }}>
+          {/* H1: Our Services at x=75, y=125 */}
+          <Pin x={75} y={125} w={420}>
+            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 52)" }}>
               <AccentText parts={titleParts} />
             </h1>
           </Pin>
 
-          {/* Paragraph: x=115, y=205 */}
-          <Pin x={115} y={205} w={490}>
-            <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 14)" }}>
+          {/* Description: x=75, y=195 */}
+          <Pin x={75} y={195} w={420}>
+            <p className="type-body text-body font-medium leading-relaxed" style={{ fontSize: "calc(var(--u) * 14)" }}>
               {description}
             </p>
           </Pin>
 
-          {/* Tiny Line: x=115, y=275 */}
-          <Pin x={115} y={275} w={450}>
-            <p className="text-2xs font-semibold text-terracotta tracking-wider uppercase" style={{ fontSize: "calc(var(--u) * 10.5)" }}>
+          {/* Lotus + Script Note: x=140, y=242 */}
+          <Pin x={140} y={242} w={280}>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5" aria-hidden="true">
+                <div className="w-5 h-px bg-emerald-600/50" />
+                <LotusIcon className="w-3.5 h-3.5 text-emerald-600" />
+                <div className="w-5 h-px bg-emerald-600/50" />
+              </div>
+              <span className="font-[var(--font-script)] text-primary font-semibold whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 18)" }}>
+                Move Breathe Belong ♡
+              </span>
+            </div>
+          </Pin>
+
+          {/* Eyebrow: x=75, y=272 */}
+          <Pin x={75} y={272} w={480}>
+            <p className="type-eyebrow text-terracotta tracking-wider font-bold whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 10.5)" }}>
               {eyebrow || "PEOPLE · PURPOSE · PRACTICE · A BRIGHTER TOMORROW"}
             </p>
           </Pin>
 
-          {/* Kin bubble: x=545, y=105 */}
+          {/* Kin bubble: x=505, y=95 directly above Kin */}
           {kinBubble && (
-            <Pin x={545} y={105} w={220}>
+            <Pin x={505} y={95} w={205}>
               <SpeechBubble
                 name={kinBubble.name}
                 lines={kinBubble.lines}
@@ -297,15 +312,15 @@ function PinnedPageContent({
             </Pin>
           )}
 
-          {/* Kayo bubble: x=1025, y=95 */}
+          {/* Kayo bubble: x=890, y=85 directly above Kayo */}
           {kayoBubble && (
-            <Pin x={1025} y={95} w={230}>
+            <Pin x={890} y={85} w={225}>
               <SpeechBubble
                 name={kayoBubble.name}
                 lines={kayoBubble.lines}
                 tone="blue"
-                tail="right"
-                delay={kayoBubble.delay ?? 0.4}
+                tail="left"
+                delay={kayoBubble.delay ?? 0.35}
               />
             </Pin>
           )}
@@ -315,16 +330,16 @@ function PinnedPageContent({
     case "testimonials":
       return (
         <>
-          {/* Eyebrow: x=90, y=95 */}
-          <Pin x={90} y={95} w={480}>
-            <p className="type-eyebrow text-terracotta tracking-wider font-semibold" style={{ fontSize: "calc(var(--u) * 12)" }}>
-              {eyebrow || "REAL PEOPLE · REAL EXPERIENCES / A HEALTHIER TOMORROW"}
+          {/* Eyebrow: x=90, y=90 — nowrap, wider pin */}
+          <Pin x={90} y={90} w={640}>
+            <p className="type-eyebrow text-terracotta tracking-wider font-semibold whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 10.5)" }}>
+              {eyebrow || "REAL PEOPLE · REAL EXPERIENCES · A HEALTHIER TOMORROW"}
             </p>
           </Pin>
 
-          {/* H1: x=90, y=130 */}
-          <Pin x={90} y={130} w={400}>
-            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight" style={{ fontSize: "calc(var(--u) * 48)" }}>
+          {/* H1: x=90, y=114 — 2 lines, 46px, wider pin */}
+          <Pin x={90} y={114} w={480}>
+            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight" style={{ fontSize: "calc(var(--u) * 46)" }}>
               <span className="block whitespace-nowrap"><AccentText parts={titleParts} /></span>
               {titleParts2 && (
                 <span className="block whitespace-nowrap mt-1"><AccentText parts={titleParts2} /></span>
@@ -332,25 +347,25 @@ function PinnedPageContent({
             </h1>
           </Pin>
 
-          {/* Bold Line: x=90, y=230 */}
+          {/* Bold Line: x=90, y=248 — below the 2-line H1 */}
           {subtitle && (
-            <Pin x={90} y={230} w={420}>
-              <p className="font-heading font-bold text-ink whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 18)" }}>
+            <Pin x={90} y={248} w={480}>
+              <p className="font-heading font-bold text-ink" style={{ fontSize: "calc(var(--u) * 17)" }}>
                 {subtitle}
               </p>
             </Pin>
           )}
 
-          {/* Paragraph: x=90, y=265 */}
-          <Pin x={90} y={265} w={500}>
+          {/* Paragraph: x=90, y=282 */}
+          <Pin x={90} y={282} w={500}>
             <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 13.5)" }}>
               {description}
             </p>
           </Pin>
 
-          {/* Kin bubble: x=685, y=215 */}
+          {/* Kin bubble: x=700, y=90 directly above Kin */}
           {kinBubble && (
-            <Pin x={685} y={215} w={210}>
+            <Pin x={700} y={90} w={220}>
               <SpeechBubble
                 name={kinBubble.name}
                 lines={kinBubble.lines}
@@ -361,9 +376,9 @@ function PinnedPageContent({
             </Pin>
           )}
 
-          {/* Kayo bubble: x=1210, y=225 */}
+          {/* Kayo bubble: x=1080, y=90 directly above Kayo */}
           {kayoBubble && (
-            <Pin x={1210} y={225} w={220}>
+            <Pin x={1080} y={90} w={220}>
               <SpeechBubble
                 name={kayoBubble.name}
                 lines={kayoBubble.lines}
@@ -379,16 +394,16 @@ function PinnedPageContent({
     case "career":
       return (
         <>
-          {/* Eyebrow: x=130, y=95 */}
-          <Pin x={130} y={95} w={450}>
-            <p className="type-eyebrow text-terracotta tracking-wider font-semibold" style={{ fontSize: "calc(var(--u) * 12)" }}>
-              {eyebrow || "PEOPLE · PURPOSE · PRACTICE / A BRIGHTER TOMORROW"}
+          {/* Eyebrow: x=130, y=90 — wider pin + nowrap */}
+          <Pin x={130} y={90} w={620}>
+            <p className="type-eyebrow text-terracotta tracking-wider font-semibold whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 10.5)" }}>
+              {eyebrow || "PEOPLE · PURPOSE · PRACTICE · A BRIGHTER TOMORROW"}
             </p>
           </Pin>
 
-          {/* H1: x=130, y=130 */}
-          <Pin x={130} y={130} w={380}>
-            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight" style={{ fontSize: "calc(var(--u) * 48)" }}>
+          {/* H1: x=130, y=114 — slightly lower for eyebrow clearance */}
+          <Pin x={130} y={114} w={490}>
+            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight" style={{ fontSize: "calc(var(--u) * 46)" }}>
               <span className="block whitespace-nowrap"><AccentText parts={titleParts} /></span>
               {titleParts2 && (
                 <span className="block whitespace-nowrap mt-1"><AccentText parts={titleParts2} /></span>
@@ -396,16 +411,16 @@ function PinnedPageContent({
             </h1>
           </Pin>
 
-          {/* Paragraph: x=130, y=210 */}
-          <Pin x={130} y={210} w={460}>
+          {/* Paragraph: x=130, y=240 — pushed below 2-line title */}
+          <Pin x={130} y={240} w={460}>
             <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 13.5)" }}>
               {description}
             </p>
           </Pin>
 
-          {/* Icon Strip: x=130, y=280 */}
+          {/* Icon Strip: x=130, y=310 — pushed down accordingly */}
           {iconStrip && (
-            <Pin x={130} y={280} w={550}>
+            <Pin x={130} y={310} w={550}>
               <IconStrip items={iconStrip} tone="green" layout="row" />
             </Pin>
           )}
@@ -448,39 +463,39 @@ function PinnedPageContent({
             </p>
           </Pin>
 
-          {/* H1: Let's Connect ♡ on ONE line: x=90, y=130 */}
-          <Pin x={90} y={130} w={450}>
-            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 46)" }}>
+          {/* H1: Let's Connect ♡ on ONE line: x=90, y=125 */}
+          <Pin x={90} y={125} w={450}>
+            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 48)" }}>
               <AccentText parts={titleParts} />
             </h1>
           </Pin>
 
-          {/* Subtitle: x=90, y=200 */}
+          {/* Subtitle: x=90, y=188 */}
           {subtitle && (
-            <Pin x={90} y={200} w={520}>
-              <p className="font-heading font-semibold text-ink leading-snug whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 17)" }}>
+            <Pin x={90} y={188} w={520}>
+              <p className="font-heading font-semibold text-ink leading-snug whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 16)" }}>
                 {subtitle}
               </p>
             </Pin>
           )}
 
-          {/* Paragraph: x=90, y=235 */}
-          <Pin x={90} y={235} w={560}>
-            <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 13.5)" }}>
+          {/* Paragraph: x=90, y=218 */}
+          <Pin x={90} y={218} w={560}>
+            <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 13)" }}>
               {description}
             </p>
           </Pin>
 
-          {/* Icon Strip: x=90, y=310 */}
+          {/* Icon Strip: x=90, y=268 — ample clearance above floor seam */}
           {iconStrip && (
-            <Pin x={90} y={310} w={570}>
-              <IconStrip items={iconStrip} tone="green" layout="row" />
+            <Pin x={90} y={268} w={550}>
+              <IconStrip items={iconStrip} tone="green" layout="row" variant="floating" />
             </Pin>
           )}
 
-          {/* Kin bubble: x=710, y=100 */}
+          {/* Kin bubble: x=680, y=90 */}
           {kinBubble && (
-            <Pin x={710} y={100} w={220}>
+            <Pin x={680} y={90} w={210}>
               <SpeechBubble
                 name={kinBubble.name}
                 lines={kinBubble.lines}
@@ -491,14 +506,14 @@ function PinnedPageContent({
             </Pin>
           )}
 
-          {/* Kayo bubble: x=1125, y=105 */}
+          {/* Kayo bubble: x=1040, y=90 — shifted left away from wooden easel */}
           {kayoBubble && (
-            <Pin x={1125} y={105} w={220}>
+            <Pin x={1040} y={90} w={215}>
               <SpeechBubble
                 name={kayoBubble.name}
                 lines={kayoBubble.lines}
                 tone="blue"
-                tail="right"
+                tail="left"
                 delay={kayoBubble.delay ?? 0.35}
               />
             </Pin>
@@ -648,11 +663,11 @@ export function PageHero({
         }
       `}</style>
 
-      {/* ── Full-Bleed Background Image (ONE image, no blurred-plant layers, no ghost-blobs) ── */}
-      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none select-none">
+      {/* ── Full-Bleed Background Image (Desktop & Tablet) ── */}
+      <div className="hidden sm:block absolute inset-0 -z-10 overflow-hidden pointer-events-none select-none">
         <Image
           src={artSrc}
-          alt=""
+          alt={artAlt}
           fill
           priority
           quality={95}
@@ -685,94 +700,195 @@ export function PageHero({
         </ArtStage>
       </div>
 
-      {/* ── Mobile / Tablet View (<1024px): Stacked Responsive ──── */}
-      <div className="block lg:hidden w-full relative py-8">
-        <Container className="relative z-10">
-          <div className="flex flex-col gap-3.5">
-            {breadcrumb && breadcrumb.length > 0 && (
-              <Breadcrumbs items={breadcrumb} />
-            )}
+      {/* ── Mobile / Tablet View (<1024px): Responsive Layout ──── */}
+      <div className="block lg:hidden w-full relative">
+        {/* On tablet (sm to lg, 640px to 1023px): 2-col panoramic */}
+        <div className="hidden sm:block w-full relative min-h-[340px] flex items-center py-6 sm:py-8">
+          <Container className="relative z-10 w-full">
+            <div className="flex flex-row items-center justify-between gap-4">
+              {/* Left Column (50%) */}
+              <div className="w-1/2 flex flex-col gap-2.5 z-10">
+                {breadcrumb && breadcrumb.length > 0 && (
+                  <Breadcrumbs items={breadcrumb} />
+                )}
+                {eyebrow && (
+                  <p className="type-eyebrow text-terracotta text-micro tracking-wider font-semibold">
+                    {eyebrow}
+                  </p>
+                )}
+                <h1 className="font-heading font-black text-navy leading-[1.08] tracking-tight text-3xl md:text-4xl">
+                  <span className="block whitespace-nowrap"><AccentText parts={titleParts} /></span>
+                  {titleParts2 && (
+                    <span className="block whitespace-nowrap mt-0.5"><AccentText parts={titleParts2} /></span>
+                  )}
+                </h1>
+                {subtitle && (
+                  <p className="font-heading text-sm md:text-base font-bold text-ink leading-snug">
+                    {subtitle}
+                  </p>
+                )}
+                {description && (
+                  <p className="type-body text-body text-xs md:text-sm leading-relaxed max-w-sm">
+                    {description}
+                  </p>
+                )}
+                {pageId === "services" && (
+                  <div className="flex flex-col gap-1 mt-1">
+                    <div className="flex items-center gap-2 max-w-[160px]" aria-hidden="true">
+                      <div className="flex-1 h-px bg-tone-green-fg/40" />
+                      <LotusIcon className="w-3.5 h-3.5 text-tone-green-fg/80" />
+                      <div className="flex-1 h-px bg-tone-green-fg/40" />
+                    </div>
+                    <span className="font-[var(--font-script)] text-sm text-primary/90 font-medium">
+                      Move Breathe Belong ♡
+                    </span>
+                  </div>
+                )}
+                {pageId === "testimonials" && (
+                  <div className="flex items-center gap-3 mt-1">
+                    <div className="relative w-14 h-16 shrink-0">
+                      <Image
+                        src="/images/hero-left-blocks-clean.png"
+                        alt="Yoga People Positive Change"
+                        fill
+                        className="object-contain object-bottom"
+                      />
+                    </div>
+                  </div>
+                )}
+                {actions.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-3 mt-1">
+                    {actions.map((action) => (
+                      <Button key={action.label} href={action.href} variant={action.variant ?? "primary"} size="sm">
+                        {action.label}
+                      </Button>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-            {eyebrow && (
-              <p className="type-eyebrow text-terracotta">{eyebrow}</p>
-            )}
+              {/* Right Column (50%): Speech bubbles over Kin & Kayo */}
+              <div className="w-1/2 h-full relative flex items-start justify-between gap-2 pt-2">
+                {kinBubble && (
+                  <div className="max-w-[48%]">
+                    <SpeechBubble
+                      name={kinBubble.name}
+                      lines={kinBubble.lines}
+                      tone="pink"
+                      tail="left"
+                      delay={kinBubble.delay ?? 0}
+                    />
+                  </div>
+                )}
+                {kayoBubble && (
+                  <div className="max-w-[48%] ml-auto">
+                    <SpeechBubble
+                      name={kayoBubble.name}
+                      lines={kayoBubble.lines}
+                      tone="blue"
+                      tail="right"
+                      delay={kayoBubble.delay ?? 0.3}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          </Container>
+        </div>
 
-            <h1
-              className="font-heading font-black text-navy leading-[1.05] tracking-tight text-3xl sm:text-4xl"
-            >
-              <span className="block">
-                <AccentText parts={titleParts} />
-              </span>
-              {titleParts2 && titleParts2.length > 0 && (
-                <span className="block mt-1">
-                  <AccentText parts={titleParts2} />
-                </span>
+        {/* On small mobile (<640px): Dedicated Clean Layout */}
+        <div className="block sm:hidden w-full relative pt-6 pb-2 bg-gradient-to-b from-[#FFF5EC] via-[#FDF0E7] to-[#FBECE2]">
+          {/* Top: Full-width Text Block */}
+          <Container className="relative z-10 w-full mb-3">
+            <div className="flex flex-col gap-2">
+              {breadcrumb && breadcrumb.length > 0 && (
+                <Breadcrumbs items={breadcrumb} />
               )}
-            </h1>
+              {eyebrow && (
+                <p className="type-eyebrow text-terracotta text-[10px] tracking-wider font-semibold">
+                  {eyebrow}
+                </p>
+              )}
+              <h1 className="font-heading font-black text-navy leading-tight tracking-tight text-2xl">
+                <AccentText parts={titleParts} />
+                {titleParts2 && <span className="block mt-0.5"><AccentText parts={titleParts2} /></span>}
+              </h1>
+              {subtitle && (
+                <p className="font-heading text-xs font-bold text-ink leading-snug">
+                  {subtitle}
+                </p>
+              )}
+              {description && (
+                <p className="type-body text-body text-xs leading-relaxed max-w-sm">
+                  {description}
+                </p>
+              )}
+              {pageId === "services" && (
+                <div className="flex items-center gap-2 mt-0.5">
+                  <div className="flex items-center gap-1.5" aria-hidden="true">
+                    <div className="w-6 h-px bg-tone-green-fg/40" />
+                    <LotusIcon className="w-3 h-3 text-tone-green-fg/80" />
+                    <div className="w-6 h-px bg-tone-green-fg/40" />
+                  </div>
+                  <span className="font-[var(--font-script)] text-xs text-primary font-medium">
+                    Move Breathe Belong ♡
+                  </span>
+                </div>
+              )}
+              {pageId === "testimonials" && (
+                <div className="flex items-center gap-2 mt-1">
+                  <div className="relative w-10 h-12 shrink-0">
+                    <Image
+                      src="/images/hero-left-blocks-clean.png"
+                      alt="Yoga People Positive Change"
+                      fill
+                      className="object-contain object-bottom"
+                    />
+                  </div>
+                  <div className="flex items-center gap-1" aria-hidden="true">
+                    <LotusIcon className="w-3 h-3 text-tone-green-fg/80" />
+                  </div>
+                </div>
+              )}
+            </div>
+          </Container>
 
-            {subtitle && (
-              <p className="font-heading text-base font-semibold text-ink/90 leading-snug">
-                {subtitle}
-              </p>
-            )}
-
-            {description && (
-              <p className="type-body text-body text-sm max-w-md">
-                {description}
-              </p>
-            )}
-
-            {tagChips && tagChips.length > 0 && (
-              <TagChips chips={tagChips} />
-            )}
-
-            {actions.length > 0 && (
-              <div className="flex flex-wrap items-center gap-3 mt-1">
-                {actions.map((action) => (
-                  <Button
-                    key={action.label}
-                    href={action.href}
-                    variant={action.variant ?? "primary"}
-                    size="md"
-                    trailingIcon={action.trailingIcon}
-                  >
-                    {action.label}
-                  </Button>
-                ))}
-              </div>
-            )}
-
-            {iconStrip && (
-              <div className="mt-2">
-                <IconStrip items={iconStrip} tone="green" layout="inline" />
-              </div>
-            )}
-
-            {/* Mobile speech bubbles */}
-            <div className="flex gap-3 flex-wrap mt-3">
+          {/* Bottom: Dedicated Mascot Stage (Kin & Kayo with floating bubbles above them) */}
+          <div className="relative w-full h-[190px] overflow-hidden">
+            {/* Background showing Kin & Kayo sitting centered */}
+            <Image
+              src={artSrc}
+              alt={artAlt}
+              fill
+              className="object-cover object-[55%_bottom] pointer-events-none select-none"
+            />
+            {/* Speech bubbles positioned cleanly above Kin and Kayo */}
+            <div className="absolute inset-0 px-3 pt-2 flex items-start justify-between pointer-events-auto">
               {kinBubble && (
-                <SpeechBubble
-                  name={kinBubble.name}
-                  lines={kinBubble.lines}
-                  tone="pink"
-                  tail="left"
-                  delay={kinBubble.delay ?? 0}
-                  className="max-w-[48%]"
-                />
+                <div className="max-w-[47%]">
+                  <SpeechBubble
+                    name={kinBubble.name}
+                    lines={kinBubble.lines}
+                    tone="pink"
+                    tail="left"
+                    delay={kinBubble.delay ?? 0}
+                  />
+                </div>
               )}
               {kayoBubble && (
-                <SpeechBubble
-                  name={kayoBubble.name}
-                  lines={kayoBubble.lines}
-                  tone="blue"
-                  tail="right"
-                  delay={kayoBubble.delay ?? 0.3}
-                  className="max-w-[48%]"
-                />
+                <div className="max-w-[49%] ml-auto">
+                  <SpeechBubble
+                    name={kayoBubble.name}
+                    lines={kayoBubble.lines}
+                    tone="blue"
+                    tail="right"
+                    delay={kayoBubble.delay ?? 0.3}
+                  />
+                </div>
               )}
             </div>
           </div>
-        </Container>
+        </div>
       </div>
     </section>
   );

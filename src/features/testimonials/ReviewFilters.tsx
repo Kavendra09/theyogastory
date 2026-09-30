@@ -29,7 +29,7 @@ export function ReviewFilters({
   const getIcon = (key: FilterKey) => {
     switch (key) {
       case "all":
-        return <Sparkles size={13} />;
+        return null;
       case "5star":
         return <Star size={13} className="fill-amber-400 text-amber-400" />;
       case "4star":

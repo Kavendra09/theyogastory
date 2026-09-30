@@ -93,12 +93,16 @@ export function ContactForm({ className }: ContactFormProps) {
         className
       )}
     >
-      <div className="mb-6">
-        <h3 className="font-heading font-bold text-navy text-2xl sm:text-3xl leading-tight">
-          Send Us a Message
-        </h3>
-        <p className="text-muted text-xs sm:text-sm mt-1">
-          Have a question or want to get started? Fill out the form and we will reach out shortly.
+      <div className="text-center mb-6 sm:mb-8">
+        <div className="flex items-center justify-center gap-2 mb-1.5">
+          <span className="text-emerald-600">🌿</span>
+          <h3 className="font-heading font-bold text-navy text-xl sm:text-2xl md:text-3xl leading-tight">
+            Send Us a Message
+          </h3>
+          <span className="text-emerald-600 scale-x-[-1]">🌿</span>
+        </div>
+        <p className="text-muted text-xs sm:text-sm">
+          Fill in the details below and we&apos;ll get back to you soon.
         </p>
       </div>
 
@@ -125,52 +129,54 @@ export function ContactForm({ className }: ContactFormProps) {
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 sm:gap-5" noValidate>
-        {/* Full Name */}
-        <Input
-          label="Full Name"
-          required
-          placeholder="e.g. Priya Sharma"
-          error={errors.name?.message}
-          {...register("name")}
-        />
-
-        {/* Email & Phone Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Row 1: Full Name * | Email Address * */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
           <Input
-            label="Email Address"
-            type="email"
             required
-            placeholder="you@example.com"
-            error={errors.email?.message}
-            {...register("email")}
+            placeholder="Full Name *"
+            error={errors.name?.message}
+            {...register("name")}
+            className="rounded-xl border-border-soft/80 bg-white"
           />
 
           <Input
-            label="Phone Number"
-            type="tel"
-            placeholder="+91 98765 43210"
-            error={errors.phone?.message}
-            {...register("phone")}
+            type="email"
+            required
+            placeholder="Email Address *"
+            error={errors.email?.message}
+            {...register("email")}
+            className="rounded-xl border-border-soft/80 bg-white"
           />
         </div>
 
-        {/* Subject Select */}
-        <Select
-          label="Subject"
-          required
-          options={SUBJECT_OPTIONS}
-          error={errors.subject?.message}
-          {...register("subject")}
-        />
+        {/* Row 2: Phone Number | Subject * */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+          <Input
+            type="tel"
+            placeholder="Phone Number"
+            error={errors.phone?.message}
+            {...register("phone")}
+            className="rounded-xl border-border-soft/80 bg-white"
+          />
 
-        {/* Message */}
+          <Select
+            required
+            placeholder="Subject *"
+            options={SUBJECT_OPTIONS}
+            error={errors.subject?.message}
+            {...register("subject")}
+            className="rounded-xl border-border-soft/80 bg-white"
+          />
+        </div>
+
+        {/* Row 3: Your Message * */}
         <Textarea
-          label="Your Message"
           required
-          rows={4}
-          placeholder="Tell us about your wellness goals, questions or requirements..."
+          rows={3}
+          placeholder="Your Message *"
           error={errors.message?.message}
           {...register("message")}
+          className="rounded-xl border-border-soft/80 bg-white"
         />
 
         {/* Submit Button */}

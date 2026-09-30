@@ -43,9 +43,9 @@ export function MeetKinKayo({ className }: MeetKinKayoProps) {
             />
           ))}
 
-          {/* Centered / Overlapping handwritten kraft paper note */}
+          {/* Centered / Overlapping handwritten kraft paper note on extra-wide screens */}
           <div
-            className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none select-none"
+            className="hidden xl:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none select-none"
             aria-hidden="true"
           >
             <div
@@ -63,16 +63,16 @@ export function MeetKinKayo({ className }: MeetKinKayoProps) {
 
         </div>
 
-        {/* Mobile handwritten paper note */}
-        <div className="md:hidden mt-6 flex justify-center" aria-hidden="true">
+        {/* Mobile and tablet handwritten paper note */}
+        <div className="xl:hidden mt-6 flex justify-center" aria-hidden="true">
           <div
-            className="px-6 py-3.5 rounded-xl shadow-soft text-center border border-kraft-border bg-kraft-bg"
+            className="px-6 py-3.5 rounded-xl shadow-soft text-center border border-kraft-border bg-kraft-bg max-w-sm"
             style={{
               transform: "rotate(-2deg)",
             }}
           >
             <p className="type-script text-ink text-base leading-snug font-medium">
-              Different personalities. Same beautiful journey. ♡
+              {CHARACTERS_SECTION.paperNote}
             </p>
           </div>
         </div>

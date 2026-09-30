@@ -110,7 +110,7 @@ export function AboutClosing({ className }: AboutClosingProps) {
               <div className="w-12 h-12 rounded-full bg-cream-50 flex items-center justify-center text-primary shadow-soft">
                 <LotusIcon size={24} />
               </div>
-              <span className="type-script text-xs text-secondary mt-1.5">Belong ♡</span>
+              <span className="type-script text-xs text-muted mt-1.5">Belong ♡</span>
             </div>
 
           </div>

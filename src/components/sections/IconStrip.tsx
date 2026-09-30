@@ -28,6 +28,7 @@ interface IconStripProps {
   tone?: Tone;
   /** "row" stacks icon above label (default); "inline" puts them side by side */
   layout?: "row" | "inline";
+  variant?: "boxed" | "floating";
   className?: string;
 }
 
@@ -35,9 +36,50 @@ export function IconStrip({
   items,
   tone = "green",
   layout = "row",
+  variant = "floating",
   className,
 }: IconStripProps) {
   const toneClasses = TONE_MAP[tone];
+
+  if (variant === "floating") {
+    return (
+      <div
+        className={cn("flex items-start justify-between gap-2 sm:gap-4 w-full", className)}
+        role="list"
+      >
+        {items.map((item, idx) => {
+          const Icon = item.icon;
+          const isGreen = idx % 2 === 0;
+
+          return (
+            <div
+              key={item.label}
+              className="flex-1 flex flex-col items-center text-center gap-1.5"
+              role="listitem"
+            >
+              {/* Floating icon circle with gentle shadow and alternating color */}
+              <span
+                className={cn(
+                  "inline-flex items-center justify-center rounded-full shrink-0 w-9 h-9 shadow-soft transition-transform hover:scale-110",
+                  isGreen
+                    ? "bg-tone-green-bg text-tone-green-fg border border-tone-green-border"
+                    : "bg-tone-pink-bg text-tone-pink-fg border border-tone-pink-border"
+                )}
+                aria-hidden="true"
+              >
+                <Icon size={16} strokeWidth={1.8} />
+              </span>
+
+              {/* Label */}
+              <span className="text-[11px] sm:text-xs font-semibold text-navy/90 leading-tight block">
+                {item.label}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div

@@ -37,7 +37,7 @@ export function LocationFilter({
                 "min-h-[44px] px-5 py-2.5 rounded-full text-xs font-semibold transition-all duration-200",
                 active
                   ? "bg-primary text-white shadow-soft"
-                  : "text-navy/70 hover:text-navy hover:bg-cream-100/60"
+                  : "text-navy/70 hover:text-navy hover:bg-primary-muted/60"
               )}
             >
               {loc}

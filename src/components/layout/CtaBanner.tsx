@@ -46,11 +46,15 @@ interface CtaBannerProps {
   /** Rotate angle for right script (default 6) */
   scriptRightRotate?: number;
   /** Main title parts for AccentText */
-  titleParts: AccentPart[];
+  titleParts?: AccentPart[];
   /** Subtitle / supporting text */
   subtitle?: string;
   /** Custom action element (button / link) — replaces subtitle if both provided */
   action?: React.ReactNode;
+  /** Custom center slot — replaces default title/subtitle if provided */
+  centerSlot?: React.ReactNode;
+  /** Whether to show the right-side logo lockup on desktop (default true) */
+  showLogo?: boolean;
   /** Custom right-side slot — replaces default logo lockup */
   rightSlot?: React.ReactNode;
   /** Background colour override (defaults to pink primary gradient) */
@@ -63,9 +67,11 @@ export function CtaBanner({
   scriptLeftRotate = -6,
   scriptRight,
   scriptRightRotate = 6,
-  titleParts,
+  titleParts = [],
   subtitle,
   action,
+  centerSlot,
+  showLogo = true,
   rightSlot,
   bgClassName,
   className,
@@ -100,7 +106,7 @@ export function CtaBanner({
         <LeafSprig className="w-20 h-20 md:w-28 md:h-28" color="var(--color-primary)" />
       </div>
 
-      <Container className="relative z-10 py-12 md:py-16">
+      <Container className="relative z-10 py-10 md:py-14">
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-center gap-6 md:gap-10">
 
           {/* Left script */}
@@ -113,37 +119,47 @@ export function CtaBanner({
           )}
 
           {/* Center content */}
-          <div className="flex flex-col items-center text-center gap-3">
-            <AccentText
-              as="h2"
-              className="type-h2 text-ink"
-              parts={titleParts}
-            />
-            {subtitle && (
-              <p className="type-body text-body max-w-lg">{subtitle}</p>
-            )}
-            {action && <div className="mt-2">{action}</div>}
-          </div>
+          {centerSlot ? (
+            <div className="flex flex-col items-center text-center w-full">
+              {centerSlot}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center text-center gap-3">
+              {titleParts && titleParts.length > 0 && (
+                <AccentText
+                  as="h2"
+                  className="type-h2 text-ink"
+                  parts={titleParts}
+                />
+              )}
+              {subtitle && (
+                <p className="type-body text-body max-w-lg">{subtitle}</p>
+              )}
+              {action && <div className="mt-2">{action}</div>}
+            </div>
+          )}
 
           {/* Right slot */}
-          {(scriptRight || rightSlot) && (
-            <div className="hidden md:flex flex-col items-center gap-3" aria-hidden={!rightSlot}>
+          {(showLogo || scriptRight || rightSlot) && (
+            <div className="hidden md:flex flex-col items-center gap-3" aria-hidden={!rightSlot && !showLogo}>
               {rightSlot ?? (
                 <>
                   {/* Default: logo lockup */}
-                  <div className="flex items-center gap-2.5">
-                    <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-soft flex items-center justify-center bg-white/40">
-                      <Image src={BRAND.logo} alt="" width={40} height={40} className="object-contain w-10 h-10" />
+                  {showLogo && (
+                    <div className="flex items-center gap-2.5">
+                      <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-soft flex items-center justify-center bg-white/40">
+                        <Image src={BRAND.logo} alt="" width={40} height={40} className="object-contain w-10 h-10" />
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <span className="font-heading text-xs font-bold text-navy tracking-tight leading-none">
+                          {BRAND.name.toUpperCase()}
+                        </span>
+                        <span className="font-heading italic text-3xs text-navy/60 mt-0.5">
+                          {BRAND.tagline}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-col items-start">
-                      <span className="font-heading text-xs font-bold text-navy tracking-tight leading-none">
-                        {BRAND.name.toUpperCase()}
-                      </span>
-                      <span className="font-heading italic text-3xs text-navy/60 mt-0.5">
-                        {BRAND.tagline}
-                      </span>
-                    </div>
-                  </div>
+                  )}
                   {scriptRight && (
                     <ScriptNote rotate={scriptRightRotate} className="text-primary/80 text-base">
                       {scriptRight}

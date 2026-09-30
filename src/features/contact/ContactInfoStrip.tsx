@@ -93,13 +93,9 @@ export function ContactInfoStrip({ className }: ContactInfoStripProps) {
                 </div>
               )}
 
-              {/* Social handle & icons */}
+              {/* Social icons & handle */}
               {item.handle && (
-                <div className="flex flex-col items-start gap-2 mt-1">
-                  <span className="font-heading font-semibold text-primary text-xs whitespace-nowrap">
-                    {item.handle}
-                  </span>
-
+                <div className="flex flex-col items-start gap-1.5 mt-1.5">
                   <div className="flex items-center gap-1.5">
                     {SOCIAL_LINKS.map((s) => (
                       <Link
@@ -114,6 +110,10 @@ export function ContactInfoStrip({ className }: ContactInfoStripProps) {
                       </Link>
                     ))}
                   </div>
+
+                  <span className="font-heading font-semibold text-navy/80 text-xs whitespace-nowrap mt-0.5">
+                    {item.handle}
+                  </span>
                 </div>
               )}
             </div>

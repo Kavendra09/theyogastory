@@ -96,11 +96,11 @@ export function SiteHeader({ variant = "floating", showWordmark = true }: SiteHe
 
               {/* Text wordmark */}
               {showWordmark && (
-                <div className={cn("hidden sm:flex flex-col", hideWordmarkOnDesktop && "lg:hidden")}>
-                  <span className="font-heading text-md font-bold text-navy leading-none tracking-tight">
+                <div className={cn("flex flex-col", hideWordmarkOnDesktop && "lg:hidden")}>
+                  <span className="font-heading text-xs sm:text-sm lg:text-md font-bold text-navy leading-none tracking-tight">
                     {BRAND.name.toUpperCase()}
                   </span>
-                  <span className="font-heading italic text-micro text-navy/60 tracking-wide mt-0.5">
+                  <span className="font-heading italic text-[9px] sm:text-micro text-navy/60 tracking-wide mt-0.5 whitespace-nowrap">
                     {BRAND.tagline}
                   </span>
                 </div>
@@ -155,16 +155,16 @@ export function SiteHeader({ variant = "floating", showWordmark = true }: SiteHe
             <div className="flex items-center gap-2 lg:hidden">
               <Link
                 href={CTA_HREF}
-                className="btn-primary inline-flex items-center gap-1.5 h-9 px-4 text-xs font-semibold"
+                className="btn-primary inline-flex items-center gap-1.5 h-8 sm:h-9 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold whitespace-nowrap"
               >
-                Start
-                <ArrowRight size={13} />
+                <span>Start Your Yoga Story</span>
+                <ArrowRight size={13} className="shrink-0" />
               </Link>
               <button
                 id="mobile-menu-toggle"
                 onClick={() => setMobileOpen((v) => !v)}
                 className={cn(
-                  "w-10 h-10 flex items-center justify-center rounded-full transition-all",
+                  "w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full transition-all shrink-0",
                   "text-navy hover:text-primary hover:bg-primary-muted",
                   "focus-visible:outline-2 focus-visible:outline-primary"
                 )}
@@ -172,7 +172,7 @@ export function SiteHeader({ variant = "floating", showWordmark = true }: SiteHe
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
               >
-                <Menu size={22} />
+                <Menu size={20} />
               </button>
             </div>
 

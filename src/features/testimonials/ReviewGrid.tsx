@@ -49,20 +49,33 @@ export function ReviewGrid({ className }: ReviewGridProps) {
     return list;
   }, [activeFilter]);
 
+  const TOTAL_MOBILE_PAGES = 5;
+  const REVIEWS_PER_PAGE = 3;
+
+  const currentMobileReviews = useMemo(() => {
+    if (filteredReviews.length === 0) return [];
+    const startIndex = (carouselIndex * REVIEWS_PER_PAGE) % filteredReviews.length;
+    const items: ReviewItem[] = [];
+    for (let i = 0; i < REVIEWS_PER_PAGE; i++) {
+      items.push(filteredReviews[(startIndex + i) % filteredReviews.length]);
+    }
+    return items;
+  }, [filteredReviews, carouselIndex]);
+
   const handlePrev = () => {
     setCarouselIndex((prev) =>
-      prev === 0 ? Math.max(0, filteredReviews.length - 1) : prev - 1
+      prev === 0 ? TOTAL_MOBILE_PAGES - 1 : prev - 1
     );
   };
 
   const handleNext = () => {
     setCarouselIndex((prev) =>
-      prev >= filteredReviews.length - 1 ? 0 : prev + 1
+      prev >= TOTAL_MOBILE_PAGES - 1 ? 0 : prev + 1
     );
   };
 
   return (
-    <div className={cn("flex flex-col gap-8", className)}>
+    <div className={cn("flex flex-col gap-6 sm:gap-8", className)}>
       {/* ── Filter Bar ────────────────────────────────────────────── */}
       <div className="flex justify-center">
         <ReviewFilters
@@ -104,48 +117,52 @@ export function ReviewGrid({ className }: ReviewGridProps) {
         </div>
       )}
 
-      {/* ── Mobile: Interactive Carousel with Arrows & Dots ───────── */}
+      {/* ── Mobile: 3-Cards Carousel with Outer Side Arrows & Dots ── */}
       {filteredReviews.length > 0 && (
-        <div className="block sm:hidden relative">
-          {/* Active Card */}
-          <div className="transition-all duration-300">
-            <ReviewCard review={filteredReviews[carouselIndex]} />
+        <div className="block sm:hidden relative px-4">
+          {/* Outer Left Arrow Button */}
+          <button
+            onClick={handlePrev}
+            aria-label="Previous reviews"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-border-light shadow-card flex items-center justify-center text-navy hover:text-primary active:scale-95 transition-all"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          {/* Outer Right Arrow Button */}
+          <button
+            onClick={handleNext}
+            aria-label="Next reviews"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-border-light shadow-card flex items-center justify-center text-navy hover:text-primary active:scale-95 transition-all"
+          >
+            <ChevronRight size={18} />
+          </button>
+
+          {/* 3 Stacked Cards for the active page */}
+          <div className="space-y-3.5 transition-all duration-300">
+            {currentMobileReviews.map((review, idx) => (
+              <ReviewCard
+                key={`${review.id}-${carouselIndex}-${idx}`}
+                review={review}
+              />
+            ))}
           </div>
 
-          {/* Navigation Controls: Arrows & Dots */}
-          <div className="flex items-center justify-between mt-5 px-2">
-            <button
-              onClick={handlePrev}
-              aria-label="Previous review"
-              className="w-9 h-9 rounded-full bg-white border border-border-light shadow-soft flex items-center justify-center text-navy hover:text-primary active:scale-95 transition-all"
-            >
-              <ChevronLeft size={18} />
-            </button>
-
-            {/* Pagination Dots */}
-            <div className="flex items-center gap-1.5" aria-hidden="true">
-              {filteredReviews.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCarouselIndex(i)}
-                  className={cn(
-                    "h-2 rounded-full transition-all duration-300",
-                    i === carouselIndex
-                      ? "w-6 bg-primary"
-                      : "w-2 bg-navy/20 hover:bg-navy/40"
-                  )}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={handleNext}
-              aria-label="Next review"
-              className="w-9 h-9 rounded-full bg-white border border-border-light shadow-soft flex items-center justify-center text-navy hover:text-primary active:scale-95 transition-all"
-            >
-              <ChevronRight size={18} />
-            </button>
+          {/* 5 Pagination Dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-5" aria-hidden="true">
+            {Array.from({ length: TOTAL_MOBILE_PAGES }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCarouselIndex(i)}
+                className={cn(
+                  "w-2 h-2 rounded-full transition-all duration-300",
+                  i === carouselIndex
+                    ? "bg-primary scale-125"
+                    : "bg-navy/20 hover:bg-navy/40"
+                )}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
       )}

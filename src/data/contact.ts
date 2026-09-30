@@ -5,7 +5,7 @@
  * Zero hardcoded text in JSX.
  */
 import type { Tone } from "@/theme/tones";
-import { Phone, Mail, Clock, Share2, type LucideIcon } from "lucide-react";
+import { Phone, Mail, Clock, MapPin, type LucideIcon } from "lucide-react";
 
 export interface ContactInfoLine {
   text: string;
@@ -30,7 +30,7 @@ export const CONTACT_INFO_STRIP: ContactInfoStripItem[] = [
       { text: "+91 98765 43211", href: "tel:+919876543211" },
       { text: "+91 98765 43212", href: "tel:+919876543212" },
     ],
-    tone: "green" as Tone,
+    tone: "pink" as Tone,
     icon: Phone,
   },
   {
@@ -40,25 +40,25 @@ export const CONTACT_INFO_STRIP: ContactInfoStripItem[] = [
       { text: "info@theyogastory.co.in", href: "mailto:info@theyogastory.co.in" },
       { text: "TheYogaStoryTYS@gmail.com", href: "mailto:TheYogaStoryTYS@gmail.com" },
     ],
-    tone: "pink" as Tone,
+    tone: "blue" as Tone,
     icon: Mail,
   },
   {
     id: "timings",
     title: "Our Timings",
     lines: [
-      { text: "Mon – Fri: 6:00 AM – 9:00 PM" },
-      { text: "Sat – Sun: 6:00 AM – 8:00 PM" },
+      { text: "Mon - Fri: 6:00 AM - 9:00 PM" },
+      { text: "Sat - Sun: 6:00 AM - 8:00 PM" },
     ],
-    tone: "yellow" as Tone,
+    tone: "green" as Tone,
     icon: Clock,
   },
   {
     id: "social",
     title: "Follow Us",
     handle: "@theyogastory",
-    tone: "blue" as Tone,
-    icon: Share2,
+    tone: "pink" as Tone,
+    icon: MapPin,
   },
 ];
 
