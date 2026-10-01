@@ -47,12 +47,12 @@ export function ServiceCard({
       <div>
         {/* Top Image */}
         {image && (
-          <div className="relative w-full h-24 sm:h-28 rounded-xl overflow-hidden mb-2.5 bg-cream-100">
+          <div className="relative w-full h-32 sm:h-36 rounded-xl overflow-hidden mb-2.5 bg-cream-100">
             <Image
               src={image}
               alt={name}
               fill
-              sizes="(max-width: 640px) 180px, 220px"
+              sizes="(max-width: 640px) 180px, 280px"
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>

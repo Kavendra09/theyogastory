@@ -19,6 +19,7 @@ import { HeroIconStrip } from "@/components/sections/HeroIconStrip";
 import { WatchStoryCard } from "@/components/sections/WatchStoryCard";
 import { ScrollHint } from "@/components/sections/ScrollHint";
 import { StorySection } from "@/components/sections/StorySection";
+import { MeetKinKayo } from "@/components/sections/MeetKinKayo";
 import { Container } from "@/components/ui/Container";
 import { homeHero } from "@/data/heroes";
 import { HERO_STATS, WATCH_STORY } from "@/data/home";
@@ -50,6 +51,7 @@ export default function HomePage() {
         subtitle={homeHero.subtitle}
         description={homeHero.description}
         actions={homeHero.actions}
+        iconStrip={homeHero.iconStrip}
         artSrc={homeHero.artSrc}
         artAlt={homeHero.artAlt}
         kinBubble={homeHero.kinBubble}
@@ -58,25 +60,28 @@ export default function HomePage() {
         theme={homeHero.theme}
       />
 
-      {/* ── 2. Hero icon strip (overlaps hero bottom) ───────────── */}
-      <HeroIconStrip items={HERO_STATS} />
+      {/* ── 2. Hero icon strip — Mobile/tablet only (desktop is inside hero canvas) ──── */}
+      <div className="lg:hidden">
+        <HeroIconStrip items={HERO_STATS} />
+      </div>
 
-      {/* ── 3. WatchStoryCard row + ScrollHint ──────────────────── */}
-      <div className="relative py-6">
-
+      {/* ── 3. WatchStoryCard + ScrollHint row — Mobile/tablet only ──────────────────── */}
+      <div className="relative py-4 lg:hidden">
         <Container size="lg">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 justify-between">
-            {/* Watch story card — full-width mobile, auto on desktop */}
-            <WatchStoryCard
-              eyebrow={WATCH_STORY.eyebrow}
-              heading={WATCH_STORY.heading}
-              subtext={WATCH_STORY.subtext}
-              href={WATCH_STORY.videoHref}
-              className="sm:max-w-xs"
-            />
+            {/* Watch story card — mobile/tablet only */}
+            <div className="lg:hidden">
+              <WatchStoryCard
+                eyebrow={WATCH_STORY.eyebrow}
+                heading={WATCH_STORY.heading}
+                subtext={WATCH_STORY.subtext}
+                href={WATCH_STORY.videoHref}
+                className="sm:max-w-xs"
+              />
+            </div>
 
-            {/* ScrollHint — centered on desktop */}
-            <div className="flex-1 flex justify-center">
+            {/* ScrollHint — centered on all sizes (desktop only; mobile has it via hero) */}
+            <div className="flex-1 flex justify-center lg:hidden">
               <Suspense fallback={null}>
                 <ScrollHint label="SCROLL TO EXPLORE" />
               </Suspense>
@@ -85,8 +90,13 @@ export default function HomePage() {
         </Container>
       </div>
 
-      {/* ── 4. Story section ─────────────────────────────────────── */}
-      <StorySection />
+      {/* ── 4. Story section — Mobile/tablet only (desktop is pinned inside hero canvas) ── */}
+      <div className="lg:hidden">
+        <StorySection />
+      </div>
+
+      {/* ── 5. Meet Kin & Kayo — Our Main Brand Identity ───────────── */}
+      <MeetKinKayo />
     </>
   );
 }

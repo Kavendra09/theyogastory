@@ -85,7 +85,7 @@ export const JOBS_LIST: JobOpening[] = [
 export const CAREER_SECTION = {
   eyebrow: "WE ARE HIRING",
   title: "Current Openings",
-  subtitle: "Find your place in our growing family of wellness enthusiasts.",
+  subtitle: "Explore opportunities to grow, contribute and make a difference.",
 };
 
 export const UPLOAD_CARDS_DATA = [
@@ -93,7 +93,7 @@ export const UPLOAD_CARDS_DATA = [
     id: "general-resume",
     tone: "pink" as Tone,
     title: "Submit Your Resume",
-    text: "Don't see a role that fits your current skillset? Send us your resume anyway! We're always looking for passionate talent to join our mission.",
+    text: "Don't see the right fit? Send us your resume and we'll keep it on file for future opportunities.",
     buttonLabel: "Upload Resume →",
     acceptedNote: "Accepted formats: PDF, DOC, DOCX (Max 5 MB)",
   },
@@ -101,7 +101,7 @@ export const UPLOAD_CARDS_DATA = [
     id: "teacher-portfolio",
     tone: "green" as Tone,
     title: "Yoga Teacher Portfolio",
-    text: "Are you a certified yoga teacher looking to teach with us? Share your certifications, teaching philosophy, and video links with our team.",
+    text: "Are you a certified yoga teacher? Share your portfolio with us. Tell us about your experience, specializations and style.",
     buttonLabel: "Upload Portfolio →",
     acceptedNote: "Accepted formats: PDF, DOC, DOCX (Max 5 MB)",
   },

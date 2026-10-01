@@ -3,11 +3,10 @@
  * ChatWidget.tsx
  *
  * Fixed bottom-right floating WhatsApp chat widget.
- * Shows overlapping Kin + Kayo mascot avatars, a "Ready to begin?" pill,
- * and a WhatsApp action button.
- *
- * Number sourced from BRAND.whatsapp (env: NEXT_PUBLIC_WHATSAPP_NUMBER).
- * Collapses to just the WA icon on mobile to avoid obscuring content.
+ * Matches HomeScreen.jpeg reference screenshot:
+ *  - Overlapping Kin + Kayo mascot avatars with working crops
+ *  - "Ready to begin?" speech bubble pill
+ *  - WhatsApp action button with brand styling
  */
 import { useState } from "react";
 import Image from "next/image";
@@ -45,19 +44,31 @@ export function ChatWidget() {
             exit={{ opacity: 0, y: 12, scale: 0.92 }}
             transition={{ type: "spring", damping: 22, stiffness: 260 }}
             className={cn(
-              "card p-4 w-[240px] sm:w-[260px]",
-              "flex flex-col gap-3"
+              "card p-4 w-[250px] sm:w-[270px] shadow-glass border-primary/20",
+              "flex flex-col gap-3 bg-white/95 backdrop-blur-md"
             )}
           >
             {/* Header */}
             <div className="flex items-start justify-between gap-2">
               {/* Overlapping avatars */}
               <div className="flex items-center">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-soft z-10">
-                  <Image src="/assets/mascots/kin.png" alt="Kin" fill sizes="40px" className="object-cover" />
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-soft z-10 bg-cream-100">
+                  <Image
+                    src="/images/kin-kayo-home-hero.jpg"
+                    alt="Kin"
+                    fill
+                    sizes="40px"
+                    className="object-cover object-[36%_38%]"
+                  />
                 </div>
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-soft -ml-3">
-                  <Image src="/assets/mascots/kayo.png" alt="Kayo" fill sizes="40px" className="object-cover" />
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-soft -ml-3 bg-cream-100">
+                  <Image
+                    src="/images/kin-kayo-home-hero.jpg"
+                    alt="Kayo"
+                    fill
+                    sizes="40px"
+                    className="object-cover object-[64%_35%]"
+                  />
                 </div>
               </div>
               <button
@@ -74,7 +85,7 @@ export function ChatWidget() {
               <p className="font-heading font-bold text-ink text-sm leading-snug">
                 Ready to begin your Yoga Story?
               </p>
-              <p className="type-small mt-1">
+              <p className="type-small mt-1 text-muted text-xs">
                 Kin &amp; Kayo are here to help — chat with us on WhatsApp!
               </p>
             </div>
@@ -87,8 +98,8 @@ export function ChatWidget() {
               className={cn(
                 "flex items-center justify-center gap-2",
                 "min-h-[44px] h-11 rounded-pill px-4",
-                "bg-whatsapp text-white text-sm font-semibold",
-                "hover:bg-whatsapp-hover transition-colors shadow-soft",
+                "bg-[#25D366] text-white text-sm font-semibold",
+                "hover:bg-[#1EBE5D] transition-colors shadow-soft",
                 "focus-visible:outline-2 focus-visible:outline-whatsapp"
               )}
             >
@@ -99,32 +110,73 @@ export function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* FAB trigger */}
-      <motion.button
-        onClick={() => setOpen((v) => !v)}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.95 }}
-        className={cn(
-          "w-14 h-14 rounded-full flex items-center justify-center",
-          "bg-whatsapp text-white shadow-pill",
-          "transition-colors hover:bg-whatsapp-hover",
-          "focus-visible:outline-2 focus-visible:outline-whatsapp focus-visible:outline-offset-2"
+      {/* FAB trigger + Resting Mascot Teaser */}
+      <div className="flex items-center gap-2">
+        {/* Resting Mascot Teaser matching HomeScreen.jpeg */}
+        {!open && (
+          <div
+            onClick={() => setOpen(true)}
+            className="cursor-pointer hidden sm:flex items-center gap-2 group transition-all"
+            aria-hidden="true"
+          >
+            {/* Kin & Kayo mini avatars */}
+            <div className="flex flex-col -space-y-2">
+              <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-soft bg-cream-100 z-10 transition-transform group-hover:scale-105">
+                <Image
+                  src="/images/kin-kayo-home-hero.jpg"
+                  alt="Kin"
+                  fill
+                  sizes="32px"
+                  className="object-cover object-[36%_38%]"
+                />
+              </div>
+              <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white shadow-soft bg-cream-100 transition-transform group-hover:scale-105">
+                <Image
+                  src="/images/kin-kayo-home-hero.jpg"
+                  alt="Kayo"
+                  fill
+                  sizes="32px"
+                  className="object-cover object-[64%_35%]"
+                />
+              </div>
+            </div>
+
+            {/* Speech bubble pill: "Ready to begin?" */}
+            <div className="bg-white/95 backdrop-blur-sm border border-border-soft px-3 py-1.5 rounded-full shadow-soft group-hover:shadow-card transition-all">
+              <span className="text-xs font-semibold text-ink whitespace-nowrap">
+                Ready to begin?
+              </span>
+            </div>
+          </div>
         )}
-        aria-label={open ? "Close WhatsApp chat" : "Open WhatsApp chat"}
-        aria-expanded={open}
-      >
-        <AnimatePresence mode="wait">
-          {open ? (
-            <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
-              <X size={22} />
-            </motion.span>
-          ) : (
-            <motion.span key="wa" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-              <WhatsAppIcon className="w-6 h-6" />
-            </motion.span>
+
+        {/* WhatsApp Circular FAB */}
+        <motion.button
+          onClick={() => setOpen((v) => !v)}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          className={cn(
+            "w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center",
+            "bg-[#25D366] text-white shadow-pill",
+            "transition-colors hover:bg-[#1EBE5D]",
+            "focus-visible:outline-2 focus-visible:outline-whatsapp focus-visible:outline-offset-2"
           )}
-        </AnimatePresence>
-      </motion.button>
+          aria-label={open ? "Close WhatsApp chat" : "Open WhatsApp chat"}
+          aria-expanded={open}
+        >
+          <AnimatePresence mode="wait">
+            {open ? (
+              <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                <X size={22} />
+              </motion.span>
+            ) : (
+              <motion.span key="wa" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                <WhatsAppIcon className="w-6 h-6" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.button>
+      </div>
     </div>
   );
 }

@@ -28,6 +28,7 @@ import { IconStrip, type IconStripItem } from "./IconStrip";
 import type { Breadcrumb, SideNote } from "@/data/heroes";
 import { ChevronRight } from "lucide-react";
 import { LotusIcon, LeafSprig } from "@/components/ui/Atoms";
+import { STORY_SECTION, FEATURE_CARDS } from "@/data/home";
 
 /* ── Exported prop types (used by heroes.ts) ────────────────────── */
 export interface SpeechBubbleProps {
@@ -70,7 +71,7 @@ const HERO_HEIGHTS_AT_1536: Record<string, number> = {
   services: 350,
   career: 365,
   contact: 410,
-  testimonials: 400,
+  testimonials: 420,
 };
 
 /* ── Breadcrumb ─────────────────────────────────────────────────── */
@@ -120,12 +121,13 @@ function TagChips({ chips }: { chips: string[] }) {
 
 /* ── Handwritten corner note: thin script, 20-24px at 1536, opacity 0.7 ── */
 function CornerNote({ note }: { note: SideNote }) {
-  if (note.leftPct !== undefined && note.leftPct < 30 && (note.topPct ?? 50) < 45) {
+  const isCard = note.isCard ?? false;
+  // Only hide plain text notes in the top-left area (they would overlap headings)
+  if (!isCard && note.leftPct !== undefined && note.leftPct < 30 && (note.topPct ?? 50) < 45) {
     return null;
   }
 
   const lines = note.text.split("\n");
-  const isCard = note.isCard ?? false;
 
   return (
     <div
@@ -168,6 +170,7 @@ interface PinnedProps {
   titleParts2?: AccentPart[];
   subtitle?: string;
   description?: string;
+  tagChips?: string[];
   actions: HeroAction[];
   iconStrip?: IconStripItem[];
   kinBubble?: SpeechBubbleProps;
@@ -182,6 +185,7 @@ function PinnedPageContent({
   titleParts2,
   subtitle,
   description,
+  tagChips,
   actions,
   iconStrip,
   kinBubble,
@@ -356,12 +360,28 @@ function PinnedPageContent({
             </Pin>
           )}
 
-          {/* Paragraph: x=90, y=282 */}
-          <Pin x={90} y={282} w={500}>
-            <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 13.5)" }}>
+          {/* Paragraph: x=90, y=278 */}
+          <Pin x={90} y={278} w={490}>
+            <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 13)" }}>
               {description}
             </p>
           </Pin>
+
+          {/* Tag chips: x=90, y=305 — 3 chips x 24px + gaps, fits within 420px hero */}
+          {tagChips && tagChips.length > 0 && (
+            <Pin x={90} y={305} w={180}>
+              <div className="flex flex-col gap-1.5">
+                {tagChips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="chip bg-white/80 border border-border-soft text-ink text-xs px-3 py-1 w-fit rounded-full font-medium"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </Pin>
+          )}
 
           {/* Kin bubble: x=700, y=90 directly above Kin */}
           {kinBubble && (
@@ -418,9 +438,9 @@ function PinnedPageContent({
             </p>
           </Pin>
 
-          {/* Icon Strip: x=130, y=310 — pushed down accordingly */}
+          {/* Icon Strip: x=130, y=290 — ensure full visibility within 365px hero */}
           {iconStrip && (
-            <Pin x={130} y={310} w={550}>
+            <Pin x={130} y={290} w={550}>
               <IconStrip items={iconStrip} tone="green" layout="row" />
             </Pin>
           )}
@@ -456,46 +476,52 @@ function PinnedPageContent({
     case "contact":
       return (
         <>
-          {/* Eyebrow: x=90, y=95 */}
-          <Pin x={90} y={95} w={450}>
-            <p className="type-eyebrow text-terracotta tracking-wider font-semibold" style={{ fontSize: "calc(var(--u) * 12)" }}>
-              {eyebrow || "PEOPLE · PRACTICE · PURPOSE / A BRIGHTER TOMORROW"}
-            </p>
+          {/* Eyebrow row 1: x=90, y=90 */}
+          <Pin x={90} y={90} w={520}>
+            <div>
+              <p className="type-eyebrow text-terracotta tracking-wider font-semibold whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 11.5)" }}>
+                {eyebrow || "PEOPLE · PRACTICE · PURPOSE"}
+              </p>
+              <p className="type-eyebrow text-terracotta tracking-wider font-semibold whitespace-nowrap mt-0.5" style={{ fontSize: "calc(var(--u) * 11.5)" }}>
+                A BRIGHTER TOMORROW
+              </p>
+            </div>
           </Pin>
 
-          {/* H1: Let's Connect ♡ on ONE line: x=90, y=125 */}
-          <Pin x={90} y={125} w={450}>
-            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 48)" }}>
+          {/* H1: Let’s Connect ♡ on ONE line: x=90, y=130 */}
+          <Pin x={90} y={130} w={520}>
+            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 52)" }}>
               <AccentText parts={titleParts} />
+              <span className="text-primary"> ♡</span>
             </h1>
           </Pin>
 
-          {/* Subtitle: x=90, y=188 */}
+          {/* Subtitle: x=90, y=198 — wrappable since it's 2 lines */}
           {subtitle && (
-            <Pin x={90} y={188} w={520}>
-              <p className="font-heading font-semibold text-ink leading-snug whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 16)" }}>
+            <Pin x={90} y={198} w={540}>
+              <p className="font-heading font-semibold text-ink leading-snug" style={{ fontSize: "calc(var(--u) * 15.5)" }}>
                 {subtitle}
               </p>
             </Pin>
           )}
 
-          {/* Paragraph: x=90, y=218 */}
-          <Pin x={90} y={218} w={560}>
+          {/* Paragraph: x=90, y=240 */}
+          <Pin x={90} y={240} w={555}>
             <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 13)" }}>
               {description}
             </p>
           </Pin>
 
-          {/* Icon Strip: x=90, y=268 — ample clearance above floor seam */}
+          {/* Icon Strip: x=90, y=295 — ample clearance above floor seam */}
           {iconStrip && (
-            <Pin x={90} y={268} w={550}>
+            <Pin x={90} y={295} w={540}>
               <IconStrip items={iconStrip} tone="green" layout="row" variant="floating" />
             </Pin>
           )}
 
-          {/* Kin bubble: x=680, y=90 */}
+          {/* Kin bubble: x=640, y=88 — wider for 4-line Hindi text */}
           {kinBubble && (
-            <Pin x={680} y={90} w={210}>
+            <Pin x={640} y={88} w={230}>
               <SpeechBubble
                 name={kinBubble.name}
                 lines={kinBubble.lines}
@@ -506,9 +532,9 @@ function PinnedPageContent({
             </Pin>
           )}
 
-          {/* Kayo bubble: x=1040, y=90 — shifted left away from wooden easel */}
+          {/* Kayo bubble: x=1035, y=88 */}
           {kayoBubble && (
-            <Pin x={1040} y={90} w={215}>
+            <Pin x={1035} y={88} w={215}>
               <SpeechBubble
                 name={kayoBubble.name}
                 lines={kayoBubble.lines}
@@ -525,18 +551,18 @@ function PinnedPageContent({
     default:
       return (
         <>
-          {/* Eyebrow: x=72, y=182 */}
+          {/* Eyebrow: x=72, y=155 */}
           {eyebrow && (
-            <Pin x={72} y={182} w={420}>
-              <p className="type-eyebrow text-terracotta tracking-wider font-semibold" style={{ fontSize: "calc(var(--u) * 13)" }}>
+            <Pin x={72} y={155} w={420}>
+              <p className="type-eyebrow text-terracotta tracking-wider font-semibold" style={{ fontSize: "calc(var(--u) * 12.5)" }}>
                 {eyebrow}
               </p>
             </Pin>
           )}
 
-          {/* H1: x=72, y=220 */}
-          <Pin x={72} y={220} w={450}>
-            <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight" style={{ fontSize: "calc(var(--u) * 64)" }}>
+          {/* H1: x=72, y=185 — 54px font gives clean clearance for 2 lines */}
+          <Pin x={72} y={185} w={480}>
+            <h1 className="font-heading font-black text-navy leading-[1.06] tracking-tight" style={{ fontSize: "calc(var(--u) * 54)" }}>
               <span className="block whitespace-nowrap"><AccentText parts={titleParts} /></span>
               {titleParts2 && (
                 <span className="block whitespace-nowrap mt-1"><AccentText parts={titleParts2} /></span>
@@ -544,19 +570,19 @@ function PinnedPageContent({
             </h1>
           </Pin>
 
-          {/* Description: x=72, y=380 */}
+          {/* Description: x=72, y=322 — positioned with comfortable gap below H1 */}
           {description && (
-            <Pin x={72} y={380} w={420}>
-              <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 16)" }}>
+            <Pin x={72} y={322} w={430}>
+              <p className="type-body text-body leading-relaxed" style={{ fontSize: "calc(var(--u) * 14.5)" }}>
                 {description}
               </p>
             </Pin>
           )}
 
-          {/* Actions: x=72, y=460 */}
+          {/* Actions: x=72, y=410 — side by side */}
           {actions && actions.length > 0 && (
-            <Pin x={72} y={460} w={420}>
-              <div className="flex flex-wrap items-center gap-3">
+            <Pin x={72} y={410} w={480}>
+              <div className="flex flex-row items-center gap-3">
                 {actions.map((action) => (
                   <Button
                     key={action.label}
@@ -572,9 +598,73 @@ function PinnedPageContent({
             </Pin>
           )}
 
-          {/* Kin bubble: x=565, y=115 */}
+          {/* Hero Icon Strip: x=72, y=485 — 4 individual columns matching HomeScreen.jpeg */}
+          {iconStrip && iconStrip.length > 0 && (
+            <Pin x={72} y={485} w={380}>
+              <div
+                className="grid grid-cols-4 gap-2"
+                role="list"
+                aria-label="Key benefits"
+              >
+                {iconStrip.map((item, i) => {
+                  const Icon = item.icon;
+                  const toneStyles = [
+                    "bg-[#EAF5EA] text-[#2E7D32] border-[#C8E6C9]",
+                    "bg-[#FDF0F4] text-[#D6336C] border-[#F8BBD0]",
+                    "bg-[#F6EFFB] text-[#8E24AA] border-[#E1BEE7]",
+                    "bg-[#FFF8E6] text-[#E68A00] border-[#FFE082]",
+                  ];
+                  return (
+                    <div
+                      key={item.label}
+                      className="flex flex-col items-center text-center gap-1.5"
+                      role="listitem"
+                    >
+                      <span
+                        className={`inline-flex items-center justify-center rounded-full shrink-0 w-11 h-11 border shadow-xs transition-transform hover:scale-105 ${toneStyles[i % 4]}`}
+                        aria-hidden="true"
+                      >
+                        <Icon size={18} strokeWidth={2} />
+                      </span>
+                      <span
+                        className="font-heading font-semibold text-ink text-center leading-tight whitespace-pre-line"
+                        style={{ fontSize: "calc(var(--u) * 11)" }}
+                      >
+                        {item.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </Pin>
+          )}
+
+          {/* Watch Our Story card: x=1080, y=425 — right side beside Kayo, above wooden blocks */}
+          <Pin x={1080} y={425} w={230}>
+            <a
+              href="https://www.youtube.com/@theyogastory"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl flex items-center gap-3 px-4 py-3 cursor-pointer group hover:shadow-glass shadow-card transition-all duration-300"
+              aria-label="Watch Our Story — opens YouTube"
+            >
+              <div className="relative shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-pill group-hover:scale-105 transition-transform">
+                  <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-0.5">
+                    <path d="M1 1L11 7L1 13V1Z" fill="white" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-heading font-bold text-ink leading-tight" style={{ fontSize: "calc(var(--u) * 13)" }}>Watch Our Story</p>
+                <p className="text-muted leading-tight mt-0.5" style={{ fontSize: "calc(var(--u) * 10.5)" }}>More than yoga, it’s a way of life.</p>
+              </div>
+            </a>
+          </Pin>
+
+          {/* Kin bubble: x=405, y=90 — directly above Kin */}
           {kinBubble && (
-            <Pin x={565} y={115} w={220}>
+            <Pin x={405} y={90} w={195}>
               <SpeechBubble
                 name={kinBubble.name}
                 lines={kinBubble.lines}
@@ -585,9 +675,9 @@ function PinnedPageContent({
             </Pin>
           )}
 
-          {/* Kayo bubble: x=1030, y=115 */}
+          {/* Kayo bubble: x=685, y=85 — directly above Kayo */}
           {kayoBubble && (
-            <Pin x={1030} y={115} w={230}>
+            <Pin x={685} y={85} w={215}>
               <SpeechBubble
                 name={kayoBubble.name}
                 lines={kayoBubble.lines}
@@ -597,6 +687,86 @@ function PinnedPageContent({
               />
             </Pin>
           )}
+
+          {/* ══════════════════════════════════════════════════════════
+              STORY CONTENT PINNED INSIDE THE WHITE CURVED CANVAS AREA
+              Fills the white curved area in home.jpg, matching HomeScreen.jpeg
+          ══════════════════════════════════════════════════════════ */}
+
+          {/* Eyebrow: THE YOGA STORY — x=568, y=606 */}
+          <Pin x={568} y={606} w={400}>
+            <p className="type-eyebrow text-terracotta text-center tracking-widest uppercase font-semibold" style={{ fontSize: "calc(var(--u) * 12)" }}>
+              {STORY_SECTION.eyebrow}
+            </p>
+          </Pin>
+
+          {/* Heading: More Than Yoga. It's a Journey Together. — x=368, y=628 */}
+          <Pin x={368} y={628} w={800}>
+            <h2 className="font-heading font-extrabold text-navy text-center leading-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 31)" }}>
+              <AccentText parts={STORY_SECTION.titleParts} />
+            </h2>
+          </Pin>
+
+          {/* Subtitle / Story paragraph — x=388, y=668 */}
+          <Pin x={388} y={668} w={760}>
+            <div className="text-center text-body leading-snug flex flex-col gap-0.5" style={{ fontSize: "calc(var(--u) * 13.5)" }}>
+              {STORY_SECTION.body.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </Pin>
+
+          {/* 5 Feature Cards Row — y=718, 5 cards across x=118 to 1418 */}
+          {FEATURE_CARDS.map((card, i) => {
+            const Icon = card.icon;
+            const toneStyles = [
+              { bg: "bg-[#FDF0F4]", text: "text-[#D6336C]", border: "border-[#F8BBD0]" },
+              { bg: "bg-[#EAF5EA]", text: "text-[#2E7D32]", border: "border-[#C8E6C9]" },
+              { bg: "bg-[#FDF0F4]", text: "text-[#D6336C]", border: "border-[#F8BBD0]" },
+              { bg: "bg-[#FFF8E6]", text: "text-[#E68A00]", border: "border-[#FFE082]" },
+              { bg: "bg-[#EEF4FB]", text: "text-[#1E88E5]", border: "border-[#BBDEFB]" },
+            ];
+            const tone = toneStyles[i % toneStyles.length];
+            const cardW = 246;
+            const cardX = 118 + i * 260;
+
+            return (
+              <Pin key={card.title} x={cardX} y={718} w={cardW}>
+                <div className="bg-white/95 rounded-2xl p-3 border border-border-soft/70 shadow-soft hover:shadow-card transition-all duration-300 flex items-center gap-2.5">
+                  <div className={`rounded-xl flex items-center justify-center shrink-0 border ${tone.bg} ${tone.text} ${tone.border} shadow-xs`} style={{ width: "calc(var(--u) * 38)", height: "calc(var(--u) * 38)" }}>
+                    <Icon size={18} strokeWidth={1.8} />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <h3 className="font-heading font-bold text-navy leading-snug whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 12)" }}>
+                      {card.title}
+                    </h3>
+                    <p className="text-muted leading-tight mt-0.5 line-clamp-2" style={{ fontSize: "calc(var(--u) * 10)" }}>
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
+              </Pin>
+            );
+          })}
+
+          {/* Ancient Whispers, Modern Echoes ♡ — bottom left, x=60, y=865 */}
+          <Pin x={60} y={865} w={300}>
+            <span className="font-[var(--font-script)] font-normal text-navy/70 leading-none -rotate-2 select-none whitespace-nowrap block" style={{ fontSize: "calc(var(--u) * 22)" }}>
+              Ancient Whispers, Modern Echoes ♡
+            </span>
+          </Pin>
+
+          {/* Scroll to Explore — bottom center, x=668, y=865 */}
+          <Pin x={668} y={865} w={200}>
+            <div className="flex flex-col items-center gap-1 opacity-70 select-none">
+              <div className="rounded-full border-2 border-navy/40 flex items-start justify-center pt-0.5" style={{ width: "calc(var(--u) * 16)", height: "calc(var(--u) * 26)" }}>
+                <div className="rounded-full bg-navy/60 animate-bounce" style={{ width: "calc(var(--u) * 3)", height: "calc(var(--u) * 6)" }} />
+              </div>
+              <span className="font-semibold tracking-widest text-navy/60 uppercase whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 10)" }}>
+                — SCROLL TO EXPLORE —
+              </span>
+            </div>
+          </Pin>
         </>
       );
   }
@@ -692,6 +862,7 @@ export function PageHero({
             titleParts2={titleParts2}
             subtitle={subtitle}
             description={description}
+            tagChips={tagChips}
             actions={actions}
             iconStrip={iconStrip}
             kinBubble={kinBubble}
@@ -744,16 +915,21 @@ export function PageHero({
                     </span>
                   </div>
                 )}
-                {pageId === "testimonials" && (
-                  <div className="flex items-center gap-3 mt-1">
-                    <div className="relative w-14 h-16 shrink-0">
-                      <Image
-                        src="/images/hero-left-blocks-clean.png"
-                        alt="Yoga People Positive Change"
-                        fill
-                        className="object-contain object-bottom"
-                      />
-                    </div>
+                {pageId === "testimonials" && tagChips && tagChips.length > 0 && (
+                  <div className="flex flex-col gap-1.5 mt-2">
+                    {tagChips.map((chip) => (
+                      <span
+                        key={chip}
+                        className="chip bg-white/80 border border-border-soft text-ink text-xs px-3 py-1 w-fit rounded-full font-medium"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {(pageId === "career" || pageId === "contact") && iconStrip && (
+                  <div className="mt-2">
+                    <IconStrip items={iconStrip} tone="green" layout="row" variant="floating" />
                   </div>
                 )}
                 {actions.length > 0 && (
@@ -835,19 +1011,16 @@ export function PageHero({
                   </span>
                 </div>
               )}
-              {pageId === "testimonials" && (
-                <div className="flex items-center gap-2 mt-1">
-                  <div className="relative w-10 h-12 shrink-0">
-                    <Image
-                      src="/images/hero-left-blocks-clean.png"
-                      alt="Yoga People Positive Change"
-                      fill
-                      className="object-contain object-bottom"
-                    />
-                  </div>
-                  <div className="flex items-center gap-1" aria-hidden="true">
-                    <LotusIcon className="w-3 h-3 text-tone-green-fg/80" />
-                  </div>
+              {pageId === "testimonials" && tagChips && tagChips.length > 0 && (
+                <div className="flex flex-col gap-1.5 mt-2">
+                  {tagChips.map((chip) => (
+                    <span
+                      key={chip}
+                      className="chip bg-white/80 border border-border-soft text-ink text-xs px-3 py-1 w-fit rounded-full font-medium"
+                    >
+                      {chip}
+                    </span>
+                  ))}
                 </div>
               )}
             </div>

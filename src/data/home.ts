@@ -7,7 +7,7 @@
 import type { AccentPart } from "@/components/ui/AccentText";
 import type { Tone } from "@/theme/tones";
 import {
-  HeartPulse, Brain, Users, Smile,
+  HeartPulse, Brain, Users, Smile, Flower2, Leaf, Heart, Sun,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -19,10 +19,10 @@ export interface HeroStatItem {
 }
 
 export const HERO_STATS: HeroStatItem[] = [
-  { icon: HeartPulse, label: "Better Health",         tone: "green"  },
-  { icon: Brain,      label: "Calmer Mind",           tone: "pink"   },
-  { icon: Users,      label: "Stronger Community",    tone: "pink"   },
-  { icon: Smile,      label: "Happier You",           tone: "yellow" },
+  { icon: Leaf,  label: "Better Health",         tone: "green"  },
+  { icon: Heart, label: "Calmer Mind",           tone: "pink"   },
+  { icon: Users, label: "Stronger Community",    tone: "pink"   },
+  { icon: Sun,   label: "Happier You",           tone: "yellow" },
 ];
 
 /* ── Watch Story card ────────────────────────────────────────────── */
@@ -37,13 +37,12 @@ export const WATCH_STORY = {
 export const STORY_SECTION = {
   eyebrow: "THE YOGA STORY",
   titleParts: [
-    { t: "More Than Yoga. " },
-    { t: "It's a Journey", accent: true },
-    { t: " Together." },
+    { t: "More Than Yoga. It's a Journey " },
+    { t: "Together.", accent: true },
   ] satisfies AccentPart[],
   body: [
-    "At The Yoga Story, yoga is more than a practice — it's a path to a healthier, happier, and more mindful life. We believe wellness should be accessible to everyone, regardless of age, experience, or background.",
-    "From our warm studio in Gurgaon to your living room screen, we bring expert guidance, personal attention, and genuine care to every session. This is your story. We're just here to help you write it.",
+    "With Kin's curiosity and Kayo's calm, we explore, learn and grow — one breath at a time.",
+    "Join a community that believes in wellness, kindness and a better tomorrow.",
   ],
 } as const;
 
@@ -57,33 +56,33 @@ export interface FeatureCardData {
 
 export const FEATURE_CARDS: FeatureCardData[] = [
   {
-    icon: Users,
+    icon: Flower2,
     title: "Yoga for All Ages",
-    description: "From toddlers to seniors — every body, every stage of life has a home here.",
+    description: "From little learners to lifelong practitioners",
     tone: "pink",
   },
   {
-    icon: HeartPulse,
+    icon: Leaf,
     title: "Expert Guidance",
-    description: "Certified instructors with years of experience in diverse yoga traditions.",
+    description: "Learn from experienced and passionate teachers",
     tone: "green",
   },
   {
-    icon: Brain,
+    icon: Heart,
     title: "Personal Attention",
-    description: "Small batches and tailored sessions ensure you progress at your own pace.",
+    description: "Small batches, big impact",
     tone: "pink",
   },
   {
-    icon: Smile,
+    icon: Sun,
     title: "Holistic Wellness",
-    description: "We weave breathwork, mindfulness, and movement into every class.",
+    description: "For a balanced and meaningful life",
     tone: "yellow",
   },
   {
-    icon: HeartPulse,
+    icon: Users,
     title: "Supportive Community",
-    description: "Join a family of like-minded souls who lift each other higher, every day.",
+    description: "Grow, connect and inspire together",
     tone: "blue",
   },
 ];

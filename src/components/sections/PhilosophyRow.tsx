@@ -3,10 +3,13 @@
  * src/components/sections/PhilosophyRow.tsx
  *
  * Section 1 of /about page:
- *  - Heading "Move. Breathe. Belong." + paragraph
- *  - 4 icon items (Authentic Practice, Mindful Living, Supportive Community, A Healthier Happier You)
- *  - Pink QuoteCard ("Yoga is not just something you practice. It's something you live." — THE YOGA STORY)
- *  - Mobile: stacked, "Our Philosophy" with pink brush highlight and script "Move · Breathe · Belong"
+ *  - "OUR PHILOSOPHY" eyebrow + "Move. Breathe. Belong." heading + paragraph
+ *  - 4 icon circles in a horizontal row: Authentic Practice, Mindful Living, Supportive Community, A Healthier Happier You
+ *  - Pink QuoteCard on the right: "Yoga is not just something you practice. It's something you live."
+ *
+ * Layout matches AboutUs2.jpeg reference screenshot:
+ *  Desktop: [Left: eyebrow + heading + paragraph + 4 horiz icons] [Right: Quote Card]
+ *  Mobile: stacked vertically
  */
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
@@ -28,61 +31,47 @@ export function PhilosophyRow({ className }: PhilosophyRowProps) {
           {/* ── Left Column: Philosophy Text + 4 Icon Items ─────── */}
           <div className="lg:col-span-7 flex flex-col gap-6">
 
-            {/* Header: Desktop vs Mobile */}
+            {/* Header */}
             <div>
-              {/* Mobile eyebrow with brush highlight */}
-              <div className="inline-flex items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary-muted text-primary">
+              {/* Eyebrow */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="h-px w-6 bg-emerald-600/40" />
+                <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-terracotta">
                   {PHILOSOPHY.eyebrow}
                 </span>
-                <span className="block sm:hidden">
-                  <ScriptNote rotate={-3} heart className="text-primary text-sm font-semibold">
-                    {PHILOSOPHY.scriptTag.replace("♡", "").trim()}
-                  </ScriptNote>
-                </span>
+                <div className="h-px w-6 bg-emerald-600/40" />
               </div>
 
-              {/* Main Heading */}
+              {/* Main Heading — "Move. Breathe. Belong." with Belong in primary */}
               <h2
                 id="philosophy-title"
                 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-navy leading-tight"
               >
-                {PHILOSOPHY.heading}
+                Move. Breathe.{" "}
+                <span className="text-primary">Belong.</span>
               </h2>
 
-              {/* Desktop Script note */}
-              <div className="hidden sm:block mt-1">
-                <ScriptNote rotate={-2} heart className="text-lg text-primary font-medium">
-                  {PHILOSOPHY.scriptTag.replace("♡", "").trim()}
-                </ScriptNote>
-              </div>
-
               {/* Lead Paragraph */}
-              <p className="type-body text-body text-base sm:text-lg leading-relaxed mt-4">
+              <p className="type-body text-body text-sm sm:text-base leading-relaxed mt-4 max-w-lg">
                 {PHILOSOPHY.paragraph}
               </p>
             </div>
 
-            {/* 4 Icon Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+            {/* 4 Icon Pillars — horizontal row matching screenshot */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-1">
               {PHILOSOPHY.pillars.map((pillar) => {
                 const Icon = pillar.icon;
                 return (
                   <div
                     key={pillar.label}
-                    className="flex items-start gap-3.5 p-4 rounded-card bg-white/80 border border-border-light shadow-soft transition-all duration-300 hover:shadow-card hover:-translate-y-0.5"
+                    className="flex flex-col items-center text-center gap-2 p-3 sm:p-4 rounded-2xl bg-white/80 border border-border-light shadow-soft transition-all duration-300 hover:shadow-card hover:-translate-y-0.5"
                   >
-                    <IconCircle tone={pillar.tone} size="md" className="shrink-0 mt-0.5">
-                      <Icon size={20} strokeWidth={1.8} />
+                    <IconCircle tone={pillar.tone} size="lg" className="shrink-0">
+                      <Icon size={22} strokeWidth={1.8} />
                     </IconCircle>
-                    <div className="flex flex-col">
-                      <h3 className="font-heading font-semibold text-ink text-sm sm:text-base leading-snug">
-                        {pillar.label}
-                      </h3>
-                      <p className="text-muted text-xs sm:text-sm mt-1 leading-snug">
-                        {pillar.description}
-                      </p>
-                    </div>
+                    <h3 className="font-heading font-semibold text-navy text-xs leading-snug">
+                      {pillar.label}
+                    </h3>
                   </div>
                 );
               })}
@@ -113,7 +102,7 @@ export function PhilosophyRow({ className }: PhilosophyRowProps) {
               {/* Quote Text */}
               <div className="relative z-10">
                 <blockquote className="font-heading italic text-xl sm:text-2xl text-ink font-semibold leading-snug">
-                  “{PHILOSOPHY.quoteCard.quote}”
+                  &ldquo;{PHILOSOPHY.quoteCard.quote}&rdquo;
                 </blockquote>
 
                 <div className="mt-6 flex items-center gap-3">

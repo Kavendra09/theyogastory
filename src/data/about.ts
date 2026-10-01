@@ -36,7 +36,7 @@ export const PHILOSOPHY = {
   heading: "Move. Breathe. Belong.",
   scriptTag: "Move · Breathe · Belong ♡",
   paragraph:
-    "We believe that true wellness is holistic — connecting the physical, mental, and communal aspects of our lives. Every practice is an opportunity to cultivate strength, peace, and meaningful connection.",
+    "We believe that wellness should feel natural, joyful and accessible. Our approach combines the timeless essence of yoga with the needs of modern life, helping people build a practice that can grow with them.",
   pillars: [
     {
       icon: Sparkles,
@@ -89,8 +89,8 @@ export const CHARACTERS: CharacterProfile[] = [
     avatarImage: "/images/kin-kayo-home-hero.jpg",
     badge: "Explorer",
     description:
-      "Curious, playful, and always ready to try a new pose! Kin reminds us to keep our practice lighthearted, joyful, and full of wonder. Every wobble is just balance in disguise.",
-    quote: "“Every wobble is just balance in disguise! 💗”",
+      "Curious, playful and full of questions. She reminds us that yoga doesn't always have to be serious — sometimes it's okay to laugh, explore and be a little mischievous.",
+    quote: "\"Big questions, bigger dreams! ♡\"",
   },
   {
     name: "Kayo",
@@ -99,16 +99,18 @@ export const CHARACTERS: CharacterProfile[] = [
     avatarImage: "/images/kin-kayo-mascots.jpg",
     badge: "Mentor",
     description:
-      "Calm, thoughtful, and deeply grounded. Kayo teaches us to pause, breathe, and find quiet stillness even on the busiest days. In stillness, strength unfolds naturally.",
-    quote: "“In the stillness of breath, you find your strength. 💙”",
+      "Calmer, thoughtful and a little more mindful. He helps Kin slow down, breathe and see things differently — although keeping up with her isn't always easy!",
+    quote: "\"Small steps make big changes. ☺\"",
   },
 ];
 
 export const CHARACTERS_SECTION = {
-  eyebrow: "MEET KIN & KAYO",
+  eyebrow: "",
   titleParts: [
-    { t: "The Heart and Soul of " },
-    { t: "Our Community", accent: true },
+    { t: "Meet " },
+    { t: "Kin", accent: true },
+    { t: " & " },
+    { t: "Kayo", accent: true },
   ] satisfies AccentPart[],
   paperNote: "Different personalities.\nSame beautiful journey. ♡",
 };
@@ -123,10 +125,10 @@ export const PURPOSE = {
     { label: "Brighter Days", tone: "yellow" as Tone },
   ],
   paragraphs: [
-    "We started The Yoga Story with a simple conviction: that ancient yogic wisdom shouldn't feel distant, rigid, or intimidating. It should feel warm, accessible, and deeply personal.",
-    "Through thoughtfully designed classes, compassionate certified guides, and an uplifting community, we are here to support every step of your wellness journey — today, tomorrow, and for years to come.",
+    "To create a space where people don't simply practice yoga, but discover a healthier relationship with their body, breath, mind and life.",
+    "Because everyone's journey is different.\nAnd every journey deserves its own story.",
   ],
-  scriptNote: "Every Journey Matters ☺",
+  scriptNote: "This is The Yoga Story. ☺",
 };
 
 /* ── Closing Section ─────────────────────────────────────────────── */

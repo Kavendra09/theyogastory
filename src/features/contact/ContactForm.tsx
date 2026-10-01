@@ -94,12 +94,14 @@ export function ContactForm({ className }: ContactFormProps) {
       )}
     >
       <div className="text-center mb-6 sm:mb-8">
-        <div className="flex items-center justify-center gap-2 mb-1.5">
-          <span className="text-emerald-600">🌿</span>
-          <h3 className="font-heading font-bold text-navy text-xl sm:text-2xl md:text-3xl leading-tight">
+        <div className="flex items-center justify-center gap-2.5 sm:gap-3 mb-1.5">
+          <span className="text-emerald-600 text-base sm:text-lg">🌿</span>
+          <span className="text-emerald-700/30 text-sm hidden sm:inline">──────</span>
+          <h3 className="font-heading font-extrabold text-navy text-xl sm:text-2xl md:text-3xl leading-tight">
             Send Us a Message
           </h3>
-          <span className="text-emerald-600 scale-x-[-1]">🌿</span>
+          <span className="text-emerald-700/30 text-sm hidden sm:inline">──────</span>
+          <span className="text-emerald-600 text-base sm:text-lg scale-x-[-1]">🌿</span>
         </div>
         <p className="text-muted text-xs sm:text-sm">
           Fill in the details below and we&apos;ll get back to you soon.

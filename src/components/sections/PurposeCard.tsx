@@ -130,11 +130,15 @@ export function PurposeCard({ className }: PurposeCardProps) {
               </h2>
 
               <div className="flex flex-col gap-4 text-body text-base sm:text-lg leading-relaxed">
-                {PURPOSE.paragraphs.map((p, i) => (
-                  <p key={i}>
-                    {p}
+                <p>{PURPOSE.paragraphs[0]}</p>
+                <div>
+                  <p className="font-heading font-bold text-navy text-base sm:text-lg leading-snug">
+                    {PURPOSE.paragraphs[1].split("\n")[0]}
                   </p>
-                ))}
+                  <p className="font-heading font-bold text-primary text-base sm:text-lg leading-snug mt-1">
+                    {PURPOSE.paragraphs[1].split("\n")[1]}
+                  </p>
+                </div>
               </div>
 
               {/* Signpost bullet chips */}

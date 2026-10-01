@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import { JobCard } from "./JobCard";
 import { LocationFilter } from "./LocationFilter";
 import { UploadCard } from "./UploadCard";
-import { JOBS_LIST, UPLOAD_CARDS_DATA, type JobOpening } from "@/data/career";
+import { JOBS_LIST, UPLOAD_CARDS_DATA, CAREER_SECTION, type JobOpening } from "@/data/career";
 import { FileText, Sparkles, Send } from "lucide-react";
 
 interface CareerOpeningsProps {
@@ -51,7 +51,7 @@ export function CareerOpenings({ className }: CareerOpeningsProps) {
             Current Openings
           </h2>
           <p className="text-xs sm:text-sm text-muted mt-1">
-            Explore opportunities to create real impact with The Yoga Story
+            {CAREER_SECTION.subtitle}
           </p>
         </div>
 

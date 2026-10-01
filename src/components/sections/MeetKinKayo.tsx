@@ -9,7 +9,7 @@
  */
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AccentText } from "@/components/ui/AccentText";
 import { CharacterProfileCard } from "./CharacterProfileCard";
 import { CHARACTERS, CHARACTERS_SECTION } from "@/data/about";
 
@@ -24,12 +24,9 @@ export function MeetKinKayo({ className }: MeetKinKayoProps) {
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14">
-          <SectionHeading
-            id="meet-kin-kayo-title"
-            variant="centered-with-leaves"
-            eyebrow={CHARACTERS_SECTION.eyebrow}
-            titleParts={CHARACTERS_SECTION.titleParts}
-          />
+          <h2 id="meet-kin-kayo-title" className="font-heading font-extrabold text-navy text-3xl sm:text-4xl lg:text-5xl leading-tight">
+            <AccentText parts={CHARACTERS_SECTION.titleParts} />
+          </h2>
         </div>
 
         {/* Character cards grid */}

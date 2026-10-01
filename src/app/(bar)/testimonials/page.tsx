@@ -57,7 +57,7 @@ export default function TestimonialsPage() {
       />
 
       {/* ── 2. Rating Summary Bar Section ─────────────────────────── */}
-      <div className="relative -mt-6 sm:-mt-8 z-30 mb-8 sm:mb-12">
+      <div className="relative mt-2 sm:mt-4 z-30 mb-8 sm:mb-12">
         <Container size="xl">
           <RatingSummaryBar />
         </Container>
@@ -68,7 +68,7 @@ export default function TestimonialsPage() {
         <Container size="xl">
           {/* Section Heading matching screenshot */}
           <div className="text-center mb-8 sm:mb-10">
-            <div className="flex items-center justify-center gap-2.5 sm:gap-3 mb-2">
+            <div className="flex items-center justify-center gap-2.5 sm:gap-3">
               <span className="text-emerald-600 text-base sm:text-lg">🌿</span>
               <span className="text-emerald-700/30 text-sm hidden sm:inline">──────</span>
               <h2 id="testimonials-heading" className="font-heading font-extrabold text-navy text-2xl sm:text-3xl leading-tight">
@@ -77,9 +77,6 @@ export default function TestimonialsPage() {
               <span className="text-emerald-700/30 text-sm hidden sm:inline">──────</span>
               <span className="text-emerald-600 text-base sm:text-lg">🌿</span>
             </div>
-            <p className="text-muted text-xs sm:text-sm">
-              {TESTIMONIALS_SECTION.subtitle}
-            </p>
           </div>
 
           {/* Interactive Review Grid (3 cols tablet/desktop, mobile carousel) */}
@@ -95,6 +92,17 @@ export default function TestimonialsPage() {
           { t: "Our Story", accent: true },
         ]}
         subtitle={TESTIMONIALS_CTA.subtitle}
+        rightSlot={
+          <div className="flex flex-col items-center text-center">
+            <span className="text-2xl text-primary mb-1">🪷</span>
+            <span className="font-heading text-xs font-black text-navy tracking-wider leading-none">
+              THE YOGA STORY
+            </span>
+            <span className="font-serif italic text-[11px] text-navy/70 mt-1">
+              Ancient Whispers, Modern Echoes
+            </span>
+          </div>
+        }
         action={
           <div className="flex justify-center mt-1">
             <a

@@ -11,6 +11,7 @@ import {
   MessageCircle, Users, Heart, Leaf,
   Briefcase, UserCheck, Sun, Smile,
   Share2, TrendingUp, Flower2,
+  HeartPulse, Brain,
 } from "lucide-react";
 
 /* ── Shared breadcrumb helper ─────────────────────────────────── */
@@ -51,8 +52,8 @@ export interface HeroConfig {
   /** Path to hero art (Kin + Kayo composite) */
   artSrc: string;
   artAlt: string;
-  kinBubble?: Omit<SpeechBubbleProps, "tone" | "tail"> & { delay?: number };
-  kayoBubble?: Omit<SpeechBubbleProps, "tone" | "tail"> & { delay?: number };
+  kinBubble?: Omit<SpeechBubbleProps, "tone" | "tail"> & { delay?: number};
+  kayoBubble?: Omit<SpeechBubbleProps, "tone" | "tail"> & { delay?: number};
   sideNotes?: SideNote[];
   theme: "warm" | "clean";
 }
@@ -71,6 +72,12 @@ export const homeHero: HeroConfig = {
     { label: "Book a Trial Class", href: "/contact", variant: "primary", trailingIcon: true },
     { label: "Explore Our Classes", href: "/services", variant: "outline" },
   ],
+  iconStrip: [
+    { icon: Leaf,  label: "Better\nHealth"      },
+    { icon: Heart, label: "Calmer\nMind"        },
+    { icon: Users, label: "Stronger\nCommunity" },
+    { icon: Sun,   label: "Happier\nYou"        },
+  ],
   artSrc: "/assets/bg/home.jpg",
   artAlt: "Kin and Kayo — The Yoga Story mascots",
   kinBubble: {
@@ -83,9 +90,7 @@ export const homeHero: HeroConfig = {
     lines: ["Just a few", "minutes, Kin.", "Great things", "happen in stillness. 😊"],
     delay: 0.4,
   },
-  sideNotes: [
-    { text: "Same Mat\nBrighter Days ☺", rotate: 6, leftPct: 83, topPct: 84 },
-  ],
+  sideNotes: [],
   theme: "warm",
 };
 
@@ -133,7 +138,7 @@ export const servicesHero: HeroConfig = {
   artAlt: "Kin and Kayo showcasing yoga services",
   kinBubble: {
     name: "Kin",
-    lines: ["So many ways to feel better!", "Which one will you choose? 😊"],
+    lines: ["So many ways to feel better!", "Which one will you choose? 💕"],
     delay: 0,
   },
   kayoBubble: {
@@ -141,6 +146,7 @@ export const servicesHero: HeroConfig = {
     lines: ["No matter your age, place or goal —", "The Yoga Story has a service for you! 💙"],
     delay: 0.4,
   },
+  sideNotes: [],
   theme: "warm",
 };
 
@@ -149,17 +155,18 @@ export const servicesHero: HeroConfig = {
 ═══════════════════════════════════════════════════════════════ */
 export const testimonialsHero: HeroConfig = {
   page: "testimonials",
-  eyebrow: "REAL PEOPLE · REAL EXPERIENCES",
+  eyebrow: "REAL PEOPLE · REAL EXPERIENCES · A HEALTHIER TOMORROW",
   titleParts: [{ t: "What Our" }],
   titleParts2: [{ t: "Community", accent: true }, { t: " Says" }],
   subtitle: "Real stories. Real people. Real impact.",
   description:
     "From better health and calmer minds to brighter lives, hear from our amazing community about their Yoga Story.",
+  tagChips: ["Yoga", "People", "Positive Change"],
   artSrc: "/assets/bg/testimonials.jpg",
   artAlt: "Kin and Kayo — our community mascots",
   kinBubble: {
     name: "Kin",
-    lines: ["Real people.", "Real stories.", "Real inspiration! ♥"],
+    lines: ["Real people.", "Real stories.", "Real inspiration! 💕"],
     delay: 0,
   },
   kayoBubble: {
@@ -167,6 +174,7 @@ export const testimonialsHero: HeroConfig = {
     lines: ["Every review", "motivates us", "to keep spreading", "wellness! 💙"],
     delay: 0.35,
   },
+  sideNotes: [],
   theme: "clean",
 };
 
@@ -175,7 +183,7 @@ export const testimonialsHero: HeroConfig = {
 ═══════════════════════════════════════════════════════════════ */
 export const careerHero: HeroConfig = {
   page: "career",
-  eyebrow: "PEOPLE · PRACTICE · PURPOSE",
+  eyebrow: "PEOPLE · PRACTICE · PURPOSE · A BRIGHTER TOMORROW",
   titleParts: [{ t: "Build Your" }],
   titleParts2: [{ t: "Story", accent: true }, { t: " With Us" }],
   description:
@@ -199,6 +207,7 @@ export const careerHero: HeroConfig = {
     lines: ["Pehle yoga", "karna seekho,", "Kin. 😀"],
     delay: 0.35,
   },
+  sideNotes: [],
   theme: "clean",
 };
 
@@ -207,29 +216,30 @@ export const careerHero: HeroConfig = {
 ═══════════════════════════════════════════════════════════════ */
 export const contactHero: HeroConfig = {
   page: "contact",
-  eyebrow: "PEOPLE · PRACTICE · PURPOSE · A BRIGHTER TOMORROW",
-  titleParts: [{ t: "Let's " }, { t: "Connect ♡", accent: true }],
-  subtitle: "We're here to listen, help and be a part of your Yoga Story.",
+  eyebrow: "PEOPLE · PRACTICE · PURPOSE",
+  titleParts: [{ t: "Let’s " }, { t: "Connect", accent: true }],
+  subtitle: "We’re here to listen, help and be a part of your Yoga Story.",
   description:
-    "Have a question, want to join our classes, explore a collaboration or just say hello? Reach out to us — we'd love to hear from you!",
+    "Have a question, want to join our classes, explore a collaboration or just say hello? Reach out to us — we’d love to hear from you!",
   iconStrip: [
-    { icon: MessageCircle, label: "Ask a Question"        },
-    { icon: Users,         label: "Join Our Community"    },
+    { icon: MessageCircle, label: "Ask a Question"       },
+    { icon: Users,         label: "Join Our Community"   },
     { icon: Leaf,          label: "Explore Opportunities" },
-    { icon: Heart,         label: "Let's Grow Together"   },
+    { icon: Heart,         label: "Let’s Grow Together"  },
   ],
   artSrc: "/assets/bg/contact.jpg",
   artAlt: "Kin and Kayo ready to connect with you",
   kinBubble: {
     name: "Kin",
-    lines: ["Kayo, agar mujhe", "kuch puchna ho", "to kahan contact", "karen? ❤️"],
+    lines: ["Kayo, agar", "mujhe kuch puchna ho", "to kahan contact", "karen? ❤️"],
     delay: 0,
   },
   kayoBubble: {
     name: "Kayo",
-    lines: ["Bahut easy hai,", "Kin. Just reach out —", "we're always", "here! 😊"],
+    lines: ["Bahut easy hai,", "Kin. Just reach out —", "we’re always", "here! 😊"],
     delay: 0.35,
   },
+  sideNotes: [],
   theme: "clean",
 };
 

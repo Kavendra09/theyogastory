@@ -64,7 +64,7 @@ export default function ContactPage() {
       />
 
       {/* ── 2. Contact Info Strip ─────────────────────────────────── */}
-      <div className="relative -mt-6 sm:-mt-8 z-30 mb-8 sm:mb-12">
+      <div className="relative mt-2 sm:mt-4 z-30 mb-8 sm:mb-12">
         <Container size="xl">
           <ContactInfoStrip />
         </Container>
