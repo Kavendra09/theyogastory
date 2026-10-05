@@ -488,11 +488,10 @@ function PinnedPageContent({
             </div>
           </Pin>
 
-          {/* H1: Let’s Connect ♡ on ONE line: x=90, y=130 */}
+          {/* H1: Let's Connect ♡ on ONE line: x=90, y=130 */}
           <Pin x={90} y={130} w={520}>
             <h1 className="font-heading font-black text-navy leading-[1.05] tracking-tight whitespace-nowrap" style={{ fontSize: "calc(var(--u) * 52)" }}>
               <AccentText parts={titleParts} />
-              <span className="text-primary"> ♡</span>
             </h1>
           </Pin>
 

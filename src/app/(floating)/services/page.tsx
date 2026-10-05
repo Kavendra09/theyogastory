@@ -283,7 +283,7 @@ export default function ServicesPage() {
               <div className="md:col-span-4 flex justify-center">
                 <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-soft bg-white/40 border border-sky-100">
                   <Image
-                    src="/images/services/online_yoga_boy.jpg"
+                    src="/images/kayo-online-yoga.jpg"
                     alt="Online Yoga with Kayo"
                     fill
                     className="object-cover object-top"
@@ -339,7 +339,7 @@ export default function ServicesPage() {
                   {/* Corporate Team Illustration */}
                   <div className="relative flex-1 h-24 sm:h-28 rounded-2xl overflow-hidden shadow-soft bg-white/60 border border-orange-100">
                     <Image
-                      src="/images/services/corporate_yoga_team_clean.jpg"
+                      src="/images/corporate-team-clean.jpg"
                       alt="Corporate Wellness Team"
                       fill
                       className="object-cover object-center"
@@ -368,21 +368,33 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
-                {/* 3 Price Cards in 1 Row */}
-                <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
-                  {TTC.tiers.map((tier) => (
-                    <div
-                      key={tier.hours}
-                      className="rounded-2xl p-3 sm:p-4 bg-white/95 border border-purple-200/80 shadow-soft text-center flex flex-col justify-between"
-                    >
-                      <span className="text-[11px] sm:text-xs font-bold text-purple-900 block leading-tight">
-                        {tier.hours}
-                      </span>
-                      <span className="font-heading text-sm sm:text-lg font-black text-navy mt-1.5 block">
-                        {tier.price}
-                      </span>
-                    </div>
-                  ))}
+                <div className="flex items-center gap-3">
+                  {/* 3 Price Cards in 1 Row */}
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3 flex-1">
+                    {TTC.tiers.map((tier) => (
+                      <div
+                        key={tier.hours}
+                        className="rounded-2xl p-3 sm:p-4 bg-white/95 border border-purple-200/80 shadow-soft text-center flex flex-col justify-between"
+                      >
+                        <span className="text-[11px] sm:text-xs font-bold text-purple-900 block leading-tight">
+                          {tier.hours}
+                        </span>
+                        <span className="font-heading text-sm sm:text-base lg:text-lg font-black text-navy mt-1.5 block">
+                          {tier.price}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Books Stack Illustration */}
+                  <div className="hidden sm:block relative w-20 h-22 rounded-xl overflow-hidden shrink-0 shadow-soft border border-purple-100/60 bg-white/50">
+                    <Image
+                      src="/images/ttc-books-clean.jpg"
+                      alt="TTC Books: Learn, Practice, Teach, Inspire"
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

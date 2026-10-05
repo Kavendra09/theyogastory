@@ -48,7 +48,7 @@ export const STUDIO_CLASSES = {
       isConsult: false,
       tone: "pink",
       icon: Activity,
-      image: "/images/services/general_fitness_clean.jpg",
+      image: "/images/studio-fitness.jpg",
     },
     {
       id: "prenatal-postnatal",
@@ -58,7 +58,7 @@ export const STUDIO_CLASSES = {
       isConsult: false,
       tone: "pink",
       icon: Baby,
-      image: "/images/services/prenatal_yoga_clean.jpg",
+      image: "/images/studio-prenatal.jpg",
     },
     {
       id: "kids-yoga",
@@ -68,7 +68,7 @@ export const STUDIO_CLASSES = {
       isConsult: false,
       tone: "green",
       icon: Smile,
-      image: "/images/services/kids_yoga_clean.jpg",
+      image: "/images/studio-kids.jpg",
     },
     {
       id: "senior-yoga",
@@ -78,7 +78,7 @@ export const STUDIO_CLASSES = {
       isConsult: false,
       tone: "purple",
       icon: HeartPulse,
-      image: "/images/services/senior_yoga_clean.jpg",
+      image: "/images/studio-senior.jpg",
     },
     {
       id: "pranayama",
@@ -88,7 +88,7 @@ export const STUDIO_CLASSES = {
       isConsult: false,
       tone: "blue",
       icon: Wind,
-      image: "/images/services/pranayama_yoga_clean.jpg",
+      image: "/images/studio-pranayama.jpg",
     },
     {
       id: "panchakarma",
@@ -98,7 +98,7 @@ export const STUDIO_CLASSES = {
       isConsult: true,
       tone: "orange",
       icon: Flower2,
-      image: "/images/services/panchakarma_therapy_clean.jpg",
+      image: "/images/studio-panchakarma.jpg",
     },
     {
       id: "pranic-healing",
@@ -108,7 +108,7 @@ export const STUDIO_CLASSES = {
       isConsult: true,
       tone: "purple",
       icon: Sparkles,
-      image: "/images/services/pranic_healing_clean.jpg",
+      image: "/images/studio-pranic.jpg",
     },
   ] satisfies StudioServiceItem[],
 };
@@ -133,7 +133,7 @@ export const HOME_YOGA = {
     details: "(3 days a week)",
   },
   scriptNote: "Your Space. Your Pace. Our Support.",
-  illustration: "/images/services/home_yoga_woman.jpg",
+  illustration: "/images/home-yoga-pose.jpg",
 };
 
 /* ── 3. Online Yoga ──────────────────────────────────────────────── */
@@ -143,6 +143,7 @@ export const ONLINE_YOGA = {
   subtitle: "Join from anywhere. Stay consistent. Stay healthy.",
   tone: "blue" as Tone,
   icon: Laptop,
+  illustration: "/images/kayo-online-yoga.jpg",
   globeLine: "Same Guidance. More Flexibility. Anywhere in the World.",
   services: [
     { name: "General Fitness Yoga", price: "₹3,000", period: "/ month" },
@@ -164,12 +165,7 @@ export const CORPORATE_YOGA = {
     period: "per session",
     details: "Custom corporate packages available",
   },
-  features: [
-    "Desk ergonomics & posture correction",
-    "Stress relief & breathwork breaks",
-    "Team mindfulness & energy boosters",
-  ],
-  illustration: "/images/services/corporate_yoga_team_clean.jpg",
+  illustration: "/images/corporate-team-clean.jpg",
 };
 
 /* ── 5. Teacher Training Course (TTC) ────────────────────────────── */
@@ -179,6 +175,7 @@ export const TTC = {
   subtitle: "Deepen your practice. Share the gift of yoga.",
   tone: "purple" as Tone,
   icon: GraduationCap,
+  illustration: "/images/ttc-books-clean.jpg",
   tiers: [
     {
       hours: "200 Hours TTC",
